@@ -1,0 +1,152 @@
+/**
+ * Diseño RAPOT — atlas urbano en movimiento.
+ * Movimiento continuo, jerarquía editorial y la misma experiencia ArcGIS pública de la referencia.
+ */
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  Building2,
+  ChevronRight,
+  CircleDotDashed,
+  Factory,
+  Leaf,
+  Menu,
+  Route,
+  Sparkles,
+  Trees,
+  X,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+
+const heroImage = "/manus-storage/nodo-hero-industrial_03cbe471.jpg";
+const heritageImage = "/manus-storage/nodo-benefit-patrimonio_7edc3ed1.jpg";
+const corridorImage = "/manus-storage/nodo-benefit-corredor_2f05e330.jpg";
+const brandMark = "/manus-storage/nodo-symbol_9f307b77.png";
+const referenceMapUrl = "https://experience.arcgis.com/experience/1278bd076fc74e78be56f7ac592f75f8";
+
+const indicators = [
+  ["28 ha", "Ámbito de lectura", "Territorio con conexiones metropolitanas"],
+  ["3.4 km", "Eje caminable", "Rutas de cercanía y cruces seguros"],
+  ["17", "Piezas de memoria", "Arquitectura y huellas de producción"],
+  ["8 min", "Acceso cotidiano", "Tiempo estimado entre hitos activos"],
+];
+
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+export default function Home() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  useEffect(() => {
+    const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.12 },
+    );
+    revealItems.forEach(item => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
+  const goTo = (id: string) => {
+    scrollToSection(id);
+    setMobileOpen(false);
+  };
+
+  return (
+    <div className="rapot-shell min-h-screen overflow-x-hidden bg-[#f7f5ee] text-[#1f2623]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1d2422]/95 text-white backdrop-blur-md">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
+          <button onClick={() => goTo("inicio")} className="brand-lockup group flex items-center gap-3 text-left" aria-label="Volver al inicio">
+            <img src={brandMark} alt="Símbolo RAPOT" className="brand-mark h-11 w-11 object-contain" />
+            <span className="font-mono text-lg font-bold tracking-[0.26em]">RAPOT</span>
+          </button>
+          <nav className="hidden items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.16em] md:flex" aria-label="Navegación principal">
+            <button onClick={() => goTo("proyecto")} className="nav-link">Proyecto</button>
+            <button onClick={() => goTo("capas")} className="nav-link">Capas</button>
+            <button onClick={() => goTo("mapa")} className="nav-link">Mapa</button>
+            <button onClick={() => goTo("actualidad")} className="nav-link">Actualidad</button>
+          </nav>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="menu-button grid h-10 w-10 place-items-center border border-white/25 md:hidden" aria-label="Abrir navegación">
+            {mobileOpen ? <X size={19} /> : <Menu size={19} />}
+          </button>
+        </div>
+        {mobileOpen && (
+          <nav className="mobile-nav border-t border-white/10 bg-[#1d2422] px-5 py-5 md:hidden" aria-label="Navegación móvil">
+            {[['Proyecto', 'proyecto'], ['Capas', 'capas'], ['Mapa', 'mapa'], ['Actualidad', 'actualidad']].map(([label, id], index) => (
+              <button key={id} onClick={() => goTo(id)} className="mobile-nav-link block w-full border-b border-white/10 py-4 text-left font-mono text-xs uppercase tracking-[0.15em]" style={{ animationDelay: `${index * 55}ms` }}>
+                {label}
+              </button>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      <main>
+        <section id="inicio" className="hero-section relative isolate flex min-h-[780px] items-end overflow-hidden bg-[#1c2420] pt-20 text-white">
+          <img src={heroImage} alt="Corredor urbano industrial en transformación" className="hero-image absolute inset-0 h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,27,25,.92)_0%,rgba(20,27,25,.62)_35%,rgba(20,27,25,.18)_70%,rgba(20,27,25,.2)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#1c2420] to-transparent" />
+          <div className="hero-coordinate absolute left-[6%] top-[18%] h-28 w-px bg-[#f2b84b]" />
+          <div className="absolute right-[5%] top-[24%] hidden rotate-90 font-mono text-[10px] uppercase tracking-[.3em] text-white/60 lg:block">04°38' N · 74°05' O</div>
+          <div className="relative mx-auto w-full max-w-[1440px] px-5 pb-20 sm:px-8 lg:px-12 lg:pb-24">
+            <p className="hero-kicker mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[#f2b84b]"><CircleDotDashed size={15} /> RAPOT / Exploración urbana</p>
+            <div className="max-w-4xl">
+              <h1 className="hero-title max-w-3xl text-balance text-[clamp(3.25rem,8vw,7.5rem)] font-extrabold leading-[.86] tracking-[-.075em]">La ciudad empieza donde las capas se encuentran.</h1>
+              <p className="hero-copy mt-8 max-w-lg text-base leading-7 text-white/80 sm:text-lg">Un territorio de conexiones: producción, vivienda, paisaje y cultura. RAPOT propone una lectura activa de lo que ya existe y de lo que puede venir.</p>
+              <button onClick={() => goTo("mapa")} className="primary-cta mt-10 inline-flex items-center gap-3 border border-[#f2b84b] bg-[#f2b84b] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#1d2422]">
+                Ver mapa de referencia <ArrowDownRight size={16} />
+              </button>
+            </div>
+            <div className="hero-index mt-20 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-5 font-mono text-[10px] uppercase tracking-[.12em] text-white/70 sm:gap-8">
+              <span>01 / Atlas vivo</span><span>02 / Lectura territorial</span><span>03 / Proyecto abierto</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="proyecto" className="section-frame border-b border-[#1f2623]/15 bg-[#f7f5ee] py-20 sm:py-28">
+          <div data-reveal className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[.66fr_1.34fr] lg:gap-24 lg:px-12">
+            <div><p className="eyebrow">01 / El territorio</p><div className="mt-7 flex items-center gap-3"><span className="h-px w-12 bg-[#f2b84b]" /><span className="font-mono text-[11px] uppercase tracking-[.18em] text-[#59605b]">Ciudad de proximidad</span></div></div>
+            <div><h2 className="text-balance text-4xl font-extrabold leading-[.98] tracking-[-.055em] sm:text-6xl">Una trama cotidiana que conecta trabajo, cuidado y paisaje.</h2><div className="mt-10 grid gap-6 text-[15px] leading-7 text-[#58605a] sm:grid-cols-2"><p>Este corredor urbano reúne memorias industriales, barrios consolidados y una red de movimientos que se reescribe a escala humana. Sus recorridos revelan oportunidades de encuentro, mezcla y renovación.</p><p>La lectura parte de lo existente: edificios de carácter, oficios, rutas y árboles que ya sostienen la vida de todos los días. La transformación se entiende como una capa más.</p></div><button onClick={() => goTo("capas")} className="text-link mt-10 inline-flex items-center gap-2 border-b border-[#1f2623] pb-2 font-mono text-[11px] font-bold uppercase tracking-[.16em]">Conocer las capas <ArrowUpRight size={15} /></button></div>
+          </div>
+        </section>
+
+        <section className="section-frame bg-[#273631] py-16 text-[#f7f5ee] sm:py-20">
+          <div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-11 flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow !text-[#f2b84b]">02 / Índice territorial</p><h2 className="mt-4 text-3xl font-bold tracking-[-.04em] sm:text-4xl">Datos para comprender el conjunto.</h2></div><p className="max-w-xs font-mono text-[10px] uppercase leading-5 tracking-[.13em] text-white/55">Indicadores de referencia para una lectura inicial del corredor</p></div><div className="grid divide-y divide-white/15 border-y border-white/15 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">{indicators.map(([value, label, detail], index) => <article data-reveal key={label} className="data-cell p-6 sm:p-7" style={{ transitionDelay: `${index * 65}ms` }}><p className="font-mono text-4xl font-bold tracking-[-.07em] text-[#f2b84b]">{value}</p><h3 className="mt-7 text-sm font-bold uppercase tracking-[.12em]">{label}</h3><p className="mt-3 max-w-44 text-sm leading-5 text-white/60">{detail}</p></article>)}</div></div>
+        </section>
+
+        <section id="capas" className="section-frame bg-[#eee9dc] py-20 sm:py-28">
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div data-reveal className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:gap-24"><div><p className="eyebrow">03 / Capas activas</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">Cuidar lo que conecta.</h2></div><p className="max-w-xl self-end text-base leading-7 text-[#59605b]">Las estrategias se leen como capas complementarias. Cada una transforma el territorio desde una escala concreta, manteniendo visible su relación con las otras.</p></div>
+            <div className="mt-14 grid gap-5 lg:grid-cols-12">
+              <article data-reveal className="layer-card layer-green relative overflow-hidden bg-[#c3d2c0] p-7 lg:col-span-7 lg:min-h-[450px] lg:p-10"><div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_16%,rgba(247,245,238,.65),transparent_32%)]" /><div className="layer-scale">L-01 / 250 m</div><div className="relative flex h-full flex-col justify-between"><Trees size={36} strokeWidth={1.5} /><div><p className="font-mono text-[11px] font-bold uppercase tracking-[.16em] text-[#305440]">01 / Paisaje de cercanía</p><h3 className="mt-4 max-w-md text-4xl font-extrabold leading-[.92] tracking-[-.05em] sm:text-5xl">Donde aparece una ruta cotidiana, aparece también una conexión verde.</h3><p className="mt-5 max-w-sm text-[15px] leading-6 text-[#35563e]">Parques de bolsillo, árboles de calle y drenajes vivos sostienen recorridos de todos los días.</p></div></div></article>
+              <article data-reveal className="layer-card layer-amber overflow-hidden bg-[#1e2825] text-[#f7f5ee] lg:col-span-5"><img src={heritageImage} alt="Antigua nave de ladrillo recuperada para uso comunitario" className="card-image h-56 w-full object-cover mix-blend-screen opacity-75 lg:h-64" /><div className="relative p-7 lg:p-9"><div className="layer-scale !text-[#f2b84b]">NODO / 02</div><Factory size={29} strokeWidth={1.5} className="text-[#f2b84b]" /><p className="mt-8 font-mono text-[11px] font-bold uppercase tracking-[.16em] text-[#f2b84b]">02 / Memoria productiva</p><h3 className="mt-4 text-3xl font-bold leading-[.98] tracking-[-.05em]">Una nave activa guarda una memoria en movimiento.</h3><p className="mt-4 text-sm leading-6 text-white/65">El patrimonio industrial se vuelve infraestructura cultural y productiva de proximidad.</p></div></article>
+              <article data-reveal className="layer-card layer-blue relative overflow-hidden bg-[#a6bdc0] p-7 lg:col-span-5 lg:min-h-[385px] lg:p-9"><div className="layer-scale">RUTA / 03</div><Route size={31} strokeWidth={1.5} className="relative z-10" /><div className="route-orbit absolute -right-8 bottom-0 h-64 w-64 rounded-full border-[34px] border-[#e6d26b]/70" /><div className="relative z-10 mt-28"><p className="font-mono text-[11px] font-bold uppercase tracking-[.16em] text-[#174d58]">03 / Movilidad que cruza</p><h3 className="mt-4 text-3xl font-bold leading-[.98] tracking-[-.05em]">Cada cruce seguro dibuja más tiempo compartido.</h3><p className="mt-4 max-w-sm text-sm leading-6 text-[#285761]">La caminata y la bicicleta trazan un espacio público continuo entre capas urbanas.</p></div></article>
+              <article data-reveal className="layer-card layer-community group relative min-h-[385px] overflow-hidden lg:col-span-7"><img src={corridorImage} alt="Corredor verde con sendero y edificios industriales" className="card-image absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#14211d]/85 via-[#14211d]/12 to-transparent" /><div className="layer-scale !text-white/70">TRAMA / 04</div><div className="relative flex h-full flex-col justify-end p-7 text-white lg:p-10"><Building2 size={30} strokeWidth={1.5} className="mb-auto text-[#f2b84b]" /><p className="font-mono text-[11px] font-bold uppercase tracking-[.16em] text-[#f2b84b]">04 / Vida de barrio</p><h3 className="mt-4 max-w-md text-3xl font-bold leading-[.98] tracking-[-.05em] sm:text-4xl">Más usos cercanos, más ciudad en común.</h3></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section id="mapa" className="section-frame bg-[#f7f5ee] pt-20 sm:pt-28">
+          <div data-reveal className="mx-auto grid max-w-[1440px] gap-10 px-5 pb-14 sm:px-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-24 lg:px-12"><div><p className="eyebrow">04 / Mapa de referencia</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">Cómo será RAPOT.</h2></div><div className="self-end"><p className="max-w-lg text-base leading-7 text-[#59605b]">Esta vista utiliza la misma experiencia cartográfica pública de ArcGIS incorporada en el sitio de referencia. Puedes navegar las capas, acercarte y explorar el territorio directamente.</p><a href={referenceMapUrl} target="_blank" rel="noreferrer" className="text-link mt-7 inline-flex items-center gap-2 border-b border-[#1f2623] pb-2 font-mono text-[11px] font-bold uppercase tracking-[.16em]">Abrir mapa en otra ventana <ArrowUpRight size={15} /></a></div></div>
+          <div data-reveal className="map-reference-shell relative border-y border-[#1f2623]/20 bg-white">
+            <div className="map-rail flex flex-wrap items-center justify-between gap-4 border-b border-[#1f2623]/20 bg-[#e9e4d8] px-5 py-3 font-mono text-[9px] font-bold uppercase tracking-[.14em] text-[#59605b] sm:px-8"><span className="flex items-center gap-2"><i className="map-node" /> RAPOT / Lámina territorial 04</span><span>Capas públicas · desplazamiento · zoom · consulta</span><span className="hidden sm:block">Ref. ARC-1278</span></div>
+            {!mapLoaded && <div className="map-loader absolute inset-0 z-10 grid place-items-center bg-[#f7f5ee]"><div className="text-center"><span className="loading-bars mx-auto mb-5 flex gap-1.5"><i /><i /><i /></span><p className="font-mono text-[10px] uppercase tracking-[.17em] text-[#59605b]">Cargando la cartografía pública</p></div></div>}
+            <iframe title="Mapa interactivo de la experiencia de referencia" src={referenceMapUrl} onLoad={() => setMapLoaded(true)} className="block h-[90vh] min-h-[620px] w-full border-0 outline-none" allowFullScreen />
+            <div className="pointer-events-none absolute bottom-5 left-5 z-10 hidden border border-[#1f2623]/25 bg-[#f7f5ee]/90 px-4 py-3 font-mono text-[9px] uppercase leading-5 tracking-[.13em] text-[#273631] backdrop-blur-sm sm:block"><span className="block text-[#9a721a]">Leyenda de lectura</span><span className="mt-1 flex items-center gap-2"><i className="map-node" /> Nodo activo</span><span className="flex items-center gap-2"><i className="map-route" /> Conexión territorial</span></div>
+            <div className="pointer-events-none absolute bottom-5 right-5 z-10 bg-[#1d2422] px-3 py-2 font-mono text-[9px] uppercase tracking-[.13em] text-white/80">Escala / exploración interactiva</div>
+          </div>
+        </section>
+
+        <section id="actualidad" className="section-frame relative overflow-hidden bg-[#e9e4d8] py-20 sm:py-24"><div className="absolute inset-y-0 left-0 w-3 bg-[#f2b84b] sm:w-6" /><div className="absolute right-[9%] top-0 hidden h-full w-px bg-[#1f2623]/15 lg:block" /><div className="notice-node absolute right-[9%] top-16 hidden h-3 w-3 translate-x-[5px] rounded-full bg-[#f2b84b] lg:block" /><div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-8 flex items-center gap-3 border-b border-[#1f2623]/25 pb-3 font-mono text-[10px] font-bold uppercase tracking-[.16em]"><span className="pulse-dot inline-block h-2 w-2 rounded-full bg-[#f2b84b]" /> Boletín territorial / actualización en curso</div><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24"><div><p className="eyebrow">05 / Actualidad</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">Un proyecto se construye conversando.</h2></div><div className="space-y-0 border-t border-[#1f2623]/35"><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">02.08.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Recorrido</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Caminar la memoria industrial</h3></div><button aria-label="Ver recorrido" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">18.07.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Taller abierto</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Imaginarios para la red verde</h3></div><button aria-label="Ver taller" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article></div></div></div></section>
+      </main>
+
+      <footer className="site-footer bg-[#1d2422] py-10 text-white"><div className="mx-auto flex max-w-[1440px] flex-col gap-7 px-5 sm:px-8 md:flex-row md:items-end md:justify-between lg:px-12"><div className="flex items-center gap-3"><img src={brandMark} alt="" className="brand-mark h-12 w-12 object-contain" /><div><p className="font-mono text-lg font-bold tracking-[.22em]">RAPOT</p><p className="mt-1 font-mono text-[9px] uppercase tracking-[.14em] text-white/45">Atlas de ciudad / edición inicial</p></div></div><p className="max-w-sm font-mono text-[9px] uppercase leading-5 tracking-[.12em] text-white/45">Una adaptación editorial para explorar los vínculos de un territorio urbano.</p></div></footer>
+    </div>
+  );
+}

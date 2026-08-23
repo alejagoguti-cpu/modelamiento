@@ -1,0 +1,69 @@
+/*
+ * Diseño RAPOT — atlas urbano en movimiento.
+ * La animación revela capas, rutas y puntos sin sacrificar legibilidad ni accesibilidad.
+ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline { --font-sans: "Manrope", sans-serif; --font-mono: "DM Mono", monospace; --color-background: var(--background); --color-foreground: var(--foreground); --color-border: var(--border); --color-ring: var(--ring); }
+:root { --background: oklch(0.97 0.008 92); --foreground: oklch(0.18 0.016 155); --border: oklch(0.7 0.015 92); --ring: oklch(0.79 0.13 82); --ease-out: cubic-bezier(.23,1,.32,1); }
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f7f5ee; color: #1f2623; font-family: "Manrope", sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 2px solid #f2b84b; outline-offset: 4px; }
+
+.nav-link { position: relative; padding: .55rem 0; color: rgba(255,255,255,.73); transition: color 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.nav-link::after { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: #f2b84b; content: ""; transform: scaleX(0); transform-origin: right; transition: transform 180ms var(--ease-out); }
+.nav-link:hover { color: #fff; transform: translateY(-2px); }
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+.menu-button, .primary-cta, .notice-button { transition: transform 160ms var(--ease-out), background-color 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out); }
+.menu-button:hover { background: #f2b84b; color: #1d2422; transform: rotate(4deg); }
+.primary-cta:hover { background: transparent; color: #f2b84b; transform: translateY(-3px); }
+.primary-cta:active, .notice-button:active, .menu-button:active { transform: scale(.97); }
+.brand-lockup:hover .brand-mark, .site-footer:hover .brand-mark { animation: rapot-spin 540ms var(--ease-out) both; }
+.eyebrow { font-family: "DM Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8b6a1b; }
+.section-frame { position: relative; isolation: isolate; }
+.section-frame::before { position: absolute; top: 1.55rem; left: .9rem; z-index: 0; width: 18px; height: 32px; border-top: 1px solid rgba(31,38,35,.24); border-left: 1px solid rgba(31,38,35,.24); content: ""; pointer-events: none; }
+.section-frame::after { position: absolute; top: 1.55rem; left: 1.35rem; z-index: 0; width: 5px; height: 5px; border-radius: 999px; background: #f2b84b; content: ""; pointer-events: none; }
+.section-frame > * { position: relative; z-index: 1; }
+.text-link { transition: color 180ms var(--ease-out), transform 180ms var(--ease-out), border-color 180ms var(--ease-out); }
+.text-link:hover { border-color: #f2b84b; color: #96701d; transform: translateX(5px); }
+
+[data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.data-cell { transition: background-color 240ms var(--ease-out), transform 240ms var(--ease-out), opacity 700ms var(--ease-out); }
+.data-cell:hover { background: rgba(242,184,75,.12); transform: translateY(-5px); }
+.layer-card { transition: transform 360ms var(--ease-out), box-shadow 360ms var(--ease-out); }
+.layer-card:hover { transform: translateY(-7px); box-shadow: 0 20px 35px rgba(31,38,35,.15); }
+.layer-card::before { position: absolute; top: 0; left: 0; z-index: 1; width: 100%; height: 4px; content: ""; transform: scaleX(.35); transform-origin: left; transition: transform 360ms var(--ease-out); }
+.layer-card:hover::before { transform: scaleX(1); }.layer-green::before { background: #356b45; }.layer-amber::before { background: #f2b84b; }.layer-blue::before { background: #225a68; }.layer-community::before { background: #f2b84b; }
+.layer-scale { position: absolute; top: 1.35rem; right: 1.35rem; z-index: 2; font-family: "DM Mono", monospace; font-size: 9px; font-weight: 700; letter-spacing: .13em; color: rgba(31,38,35,.53); }
+.card-image { transition: transform 600ms var(--ease-out), filter 420ms var(--ease-out); }
+.layer-card:hover .card-image { transform: scale(1.07); filter: saturate(1.13); }
+.route-orbit { animation: rapot-orbit 9s linear infinite; }
+.hero-image { animation: rapot-hero 14s ease-in-out infinite alternate; }
+.hero-coordinate { animation: rapot-line 2.8s var(--ease-out) infinite alternate; }
+.hero-kicker, .hero-title, .hero-copy, .hero-index, .primary-cta { animation: rapot-rise 760ms var(--ease-out) both; }
+.hero-title { animation-delay: 80ms; }.hero-copy { animation-delay: 170ms; }.primary-cta { animation-delay: 245ms; }.hero-index { animation-delay: 330ms; }
+.mobile-nav { animation: rapot-drop 220ms var(--ease-out) both; }.mobile-nav-link { animation: rapot-rise 300ms var(--ease-out) both; }
+.map-reference-shell { transition: box-shadow 300ms var(--ease-out), transform 300ms var(--ease-out); }.map-reference-shell:hover { box-shadow: 0 20px 50px rgba(31,38,35,.14); }
+.map-rail { background-image: linear-gradient(90deg, transparent 0 90%, rgba(31,38,35,.1) 90% 90.15%, transparent 90.15%); }.map-node { display: inline-block; width: 8px; height: 8px; border-radius: 999px; background: #f2b84b; box-shadow: 0 0 0 3px rgba(242,184,75,.22); }.map-route { display: inline-block; width: 16px; height: 2px; background: #225a68; }
+.map-loader { animation: rapot-fade 260ms var(--ease-out) both; }.loading-bars i { display: block; width: 6px; height: 26px; background: #4384d9; animation: rapot-bars .75s ease-in-out infinite alternate; }.loading-bars i:nth-child(2) { animation-delay: .14s; }.loading-bars i:nth-child(3) { animation-delay: .28s; }
+.notice-node, .pulse-dot { animation: rapot-pulse 2s ease-in-out infinite; }.notice-row { transition: padding 220ms var(--ease-out), background-color 220ms var(--ease-out); }.notice-row:hover { background: rgba(242,184,75,.14); padding-left: 1rem; padding-right: 1rem; }.notice-row:hover .notice-button { background: #1f2623; color: #f2b84b; transform: rotate(45deg); }
+.site-footer { animation: rapot-fade 900ms var(--ease-out) both; }
+
+@keyframes rapot-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rapot-drop { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rapot-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rapot-hero { from { transform: scale(1.02); } to { transform: scale(1.08) translateX(-1.5%); } }
+@keyframes rapot-line { from { transform: scaleY(.55); transform-origin: top; opacity: .45; } to { transform: scaleY(1); transform-origin: top; opacity: 1; } }
+@keyframes rapot-orbit { to { transform: rotate(360deg); } }
+@keyframes rapot-spin { 45% { transform: rotate(-18deg) scale(1.12); } 100% { transform: rotate(360deg); } }
+@keyframes rapot-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(242,184,75,.45); } 50% { box-shadow: 0 0 0 9px rgba(242,184,75,0); } }
+@keyframes rapot-bars { from { transform: scaleY(.45); transform-origin: bottom; } to { transform: scaleY(1); transform-origin: bottom; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } [data-reveal] { opacity: 1; transform: none; } }
+@media (max-width: 640px) { .eyebrow { font-size: 10px; } .hero-section { min-height: 680px; } }
