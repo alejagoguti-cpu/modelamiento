@@ -43,3 +43,7 @@ El visor de ZIBo abre con una transición de carga de tres barras que se desvane
 ## Refinamiento de dirección de arte
 
 RAPOT evoluciona hacia una **monografía de arquitectura y territorio**: menos interfaz promocional, más página de archivo editorial. La tipografía de exhibición pasa a una serif de contraste alto y con aire tipográfico; el sans queda reservado para la lectura funcional y el monoespaciado para los datos. El color se concentra en **negro de tinta**, **papel de algodón**, **latón envejecido** y un verde bosque muy contenido. Los módulos abandonan la lógica de tarjetas de producto: se vuelven láminas con bordes finos, notas de margen, imágenes desaturadas y proporciones deliberadas. La interacción deja de “saltar”; en su lugar, usa variaciones casi imperceptibles de encuadre, sombra y revelado de información.
+
+### Paleta blanco y azul
+
+La edición cromática de RAPOT se limita a **blanco editorial** `#F8FBFF`, **azul de archivo** `#0A4D88`, **azul de plano** `#2679C6`, **azul niebla** `#E8F1F8` y **azul noche** `#071B31`. El azul de archivo reemplaza los antiguos acentos cálidos en acciones, puntos activos y datos clave. El azul niebla delimita láminas y fondos secundarios; el azul noche enmarca el hero, navegación y pie de página. La fotografía adopta un tratamiento de contraste bajo con una veladura azul, creando una identidad más precisa, calma y cartográfica.

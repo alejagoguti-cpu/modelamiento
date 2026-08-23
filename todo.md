@@ -41,4 +41,10 @@
 - [x] Aplicar una tipografía, composición, materialidad y jerarquía visual más exclusivas.
 - [x] Revisar y sincronizar el rediseño premium en GitHub.
 
+## Identidad blanco y azul
+
+- [x] Definir una paleta premium de blanco y azul para el atlas RAPOT.
+- [x] Recolorear la interfaz, sus estados activos y los recursos del mapa.
+- [x] Verificar y sincronizar la nueva versión cromática.
+
 > La aplicación estática reside actualmente en `client/`; la carpeta `frontend/` se utiliza como espacio documental y de integración para conservar la estructura requerida sin romper el entorno de desarrollo.
