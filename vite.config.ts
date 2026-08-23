@@ -206,6 +206,8 @@ function vitePluginStorageProxy(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({
+  // GitHub Pages serves this repository from /modelamiento/.
+  base: process.env.GITHUB_ACTIONS ? "/modelamiento/" : "/",
   plugins,
   resolve: {
     alias: {
