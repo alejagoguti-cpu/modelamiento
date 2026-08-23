@@ -39,3 +39,7 @@ RAPOT emplea verde río exclusivamente para paisaje y conexión ecológica, azul
 ### Movimiento del explorador
 
 El visor de ZIBo abre con una transición de carga de tres barras que se desvanece suavemente al estar disponible. Los controles de lectura territorial muestran una respuesta inmediata al seleccionar una capa: el botón cambia de estado, una lámina de color cruza la cartografía y una ficha actualiza el foco de lectura. La entrada al mapa activa un marco técnico sutil, sin bloquear la interacción directa con el visor oficial. Todas las transiciones se limitan a opacidad, color y transformaciones de menos de 420 ms y se desactivan cuando el sistema solicita movimiento reducido.
+
+## Refinamiento de dirección de arte
+
+RAPOT evoluciona hacia una **monografía de arquitectura y territorio**: menos interfaz promocional, más página de archivo editorial. La tipografía de exhibición pasa a una serif de contraste alto y con aire tipográfico; el sans queda reservado para la lectura funcional y el monoespaciado para los datos. El color se concentra en **negro de tinta**, **papel de algodón**, **latón envejecido** y un verde bosque muy contenido. Los módulos abandonan la lógica de tarjetas de producto: se vuelven láminas con bordes finos, notas de margen, imágenes desaturadas y proporciones deliberadas. La interacción deja de “saltar”; en su lugar, usa variaciones casi imperceptibles de encuadre, sombra y revelado de información.

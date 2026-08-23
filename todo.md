@@ -35,4 +35,10 @@
 - [x] Implementar controles de capas y feedback animado sobre el visor oficial.
 - [x] Validar la experiencia con movimiento reducido y sincronizar la actualización.
 
+## Refinamiento visual premium
+
+- [x] Reducir señales visuales genéricas y definir una dirección editorial más sobria.
+- [x] Aplicar una tipografía, composición, materialidad y jerarquía visual más exclusivas.
+- [x] Revisar y sincronizar el rediseño premium en GitHub.
+
 > La aplicación estática reside actualmente en `client/`; la carpeta `frontend/` se utiliza como espacio documental y de integración para conservar la estructura requerida sin romper el entorno de desarrollo.
