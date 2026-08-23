@@ -35,3 +35,7 @@ El sitio de referencia, ZiBo Bogotá, es la especificación de experiencia para 
 El explorador siempre conserva una cartografía visible y elaborada: cuadrícula de coordenadas, traza de recorrido, marcadores circulares y leyenda técnica, incluso si la capa de mapa se encuentra en estado de carga. Todas las secciones mayores mantienen al menos un código de atlas —un índice, una línea, una marca, una traza o una etiqueta monoespaciada— para dar continuidad al sistema. El ámbar se reserva para acciones, fechas, cifras, ubicaciones activas y avisos territoriales; las superficies extensas se interpretan como una placa de boletín y no como relleno decorativo.
 
 RAPOT emplea verde río exclusivamente para paisaje y conexión ecológica, azul mapa para rutas y lectura espacial, y ámbar de nodo para acciones y puntos activos. Su tono redacta observaciones territoriales concretas antes que explicaciones institucionales genéricas.
+
+### Movimiento del explorador
+
+El visor de ZIBo abre con una transición de carga de tres barras que se desvanece suavemente al estar disponible. Los controles de lectura territorial muestran una respuesta inmediata al seleccionar una capa: el botón cambia de estado, una lámina de color cruza la cartografía y una ficha actualiza el foco de lectura. La entrada al mapa activa un marco técnico sutil, sin bloquear la interacción directa con el visor oficial. Todas las transiciones se limitan a opacidad, color y transformaciones de menos de 420 ms y se desactivan cuando el sistema solicita movimiento reducido.

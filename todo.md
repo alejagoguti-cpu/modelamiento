@@ -29,4 +29,10 @@
 - [x] Centrar y describir el explorador RAPOT con la ubicación oficial de ZIBo Bogotá.
 - [x] Validar visualmente el ajuste cartográfico y sincronizarlo con GitHub.
 
+## Movimiento del explorador ZIBo
+
+- [x] Diseñar estados suaves para carga, selección y transición de capas del mapa.
+- [x] Implementar controles de capas y feedback animado sobre el visor oficial.
+- [x] Validar la experiencia con movimiento reducido y sincronizar la actualización.
+
 > La aplicación estática reside actualmente en `client/`; la carpeta `frontend/` se utiliza como espacio documental y de integración para conservar la estructura requerida sin romper el entorno de desarrollo.

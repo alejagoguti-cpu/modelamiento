@@ -31,6 +31,13 @@ const indicators = [
   ["8 min", "Acceso cotidiano", "Tiempo estimado entre hitos activos"],
 ];
 
+const mapLayers = [
+  { id: "polygon", label: "Polígono", code: "L-01", description: "Delimitación oficial de la Actuación Estratégica ZIBo.", color: "amber" },
+  { id: "mobility", label: "Movilidad", code: "L-02", description: "Lectura de corredores, accesos y conexiones metropolitanas.", color: "blue" },
+  { id: "public", label: "Espacio público", code: "L-03", description: "Red de espacio público y recorridos de proximidad.", color: "green" },
+  { id: "activity", label: "Actividad", code: "L-04", description: "Mezcla urbana, memoria productiva y nuevas actividades.", color: "charcoal" },
+];
+
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -38,6 +45,9 @@ function scrollToSection(id: string) {
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [activeLayerId, setActiveLayerId] = useState("polygon");
+  const [isLayerTransitioning, setIsLayerTransitioning] = useState(false);
+  const activeMapLayer = mapLayers.find(layer => layer.id === activeLayerId) ?? mapLayers[0];
 
   useEffect(() => {
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -57,6 +67,13 @@ export default function Home() {
   const goTo = (id: string) => {
     scrollToSection(id);
     setMobileOpen(false);
+  };
+
+  const selectMapLayer = (layerId: string) => {
+    if (layerId === activeLayerId) return;
+    setActiveLayerId(layerId);
+    setIsLayerTransitioning(true);
+    window.setTimeout(() => setIsLayerTransitioning(false), 420);
   };
 
   return (
@@ -136,9 +153,14 @@ export default function Home() {
           <div data-reveal className="mx-auto grid max-w-[1440px] gap-10 px-5 pb-14 sm:px-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-24 lg:px-12"><div><p className="eyebrow">04 / ZIBo Bogotá</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">Modelo urbano ZIBo.</h2></div><div className="self-end"><p className="max-w-lg text-base leading-7 text-[#59605b]">El visor se ubica sobre el polígono oficial de la Actuación Estratégica ZIBo. Su centroide verificado es <strong>4.622506° N, 74.095930° O</strong>, entre las calles 6 y 26, y entre la avenida NQS y la carrera 50.</p><a href={referenceMapUrl} target="_blank" rel="noreferrer" className="text-link mt-7 inline-flex items-center gap-2 border-b border-[#1f2623] pb-2 font-mono text-[11px] font-bold uppercase tracking-[.16em]">Abrir visor oficial ZIBo <ArrowUpRight size={15} /></a></div></div>
           <div data-reveal className="map-reference-shell relative border-y border-[#1f2623]/20 bg-white">
             <div className="map-rail flex flex-wrap items-center justify-between gap-4 border-b border-[#1f2623]/20 bg-[#e9e4d8] px-5 py-3 font-mono text-[9px] font-bold uppercase tracking-[.14em] text-[#59605b] sm:px-8"><span className="flex items-center gap-2"><i className="map-node" /> ZIBo / Polígono oficial</span><span>Centroide 4.622506° N · 74.095930° O</span><span className="hidden sm:block">Ref. ARC-1278</span></div>
-            {!mapLoaded && <div className="map-loader absolute inset-0 z-10 grid place-items-center bg-[#f7f5ee]"><div className="text-center"><span className="loading-bars mx-auto mb-5 flex gap-1.5"><i /><i /><i /></span><p className="font-mono text-[10px] uppercase tracking-[.17em] text-[#59605b]">Cargando el visor oficial ZIBo</p></div></div>}
+            <div className="map-layer-switcher absolute left-5 top-[53px] z-20 max-w-[calc(100%-2.5rem)] border border-[#1f2623]/20 bg-[#f7f5ee]/95 p-2 shadow-[0_12px_26px_rgba(31,38,35,.14)] backdrop-blur-sm sm:left-7 sm:top-[57px]" role="group" aria-label="Capas de lectura RAPOT">
+              <div className="flex items-center gap-2 px-2 pb-2 pt-1 font-mono text-[9px] font-bold uppercase tracking-[.14em] text-[#59605b]"><Sparkles size={12} className="text-[#b78417]" /> Capas de lectura</div>
+              <div className="flex flex-wrap gap-1">{mapLayers.map(layer => <button key={layer.id} type="button" onClick={() => selectMapLayer(layer.id)} aria-pressed={activeLayerId === layer.id} className={`map-layer-button ${activeLayerId === layer.id ? `is-active is-${layer.color}` : ""}`}><span>{layer.code}</span>{layer.label}</button>)}</div>
+            </div>
+            <div className={`map-loader absolute inset-0 z-10 grid place-items-center bg-[#f7f5ee] ${mapLoaded ? "is-loaded" : ""}`} aria-live="polite"><div className="text-center"><span className="loading-bars mx-auto mb-5 flex gap-1.5"><i /><i /><i /></span><p className="font-mono text-[10px] uppercase tracking-[.17em] text-[#59605b]">Cargando el visor oficial ZIBo</p></div></div>
             <iframe title="Mapa interactivo de la experiencia de referencia" src={referenceMapUrl} onLoad={() => setMapLoaded(true)} className="block h-[90vh] min-h-[620px] w-full border-0 outline-none" allowFullScreen />
-            <div className="pointer-events-none absolute bottom-5 left-5 z-10 hidden border border-[#1f2623]/25 bg-[#f7f5ee]/90 px-4 py-3 font-mono text-[9px] uppercase leading-5 tracking-[.13em] text-[#273631] backdrop-blur-sm sm:block"><span className="block text-[#9a721a]">Delimitación oficial</span><span className="mt-1 flex items-center gap-2"><i className="map-node" /> Calles 6–26</span><span className="flex items-center gap-2"><i className="map-route" /> Av. NQS – Carrera 50</span></div>
+            <div className={`map-layer-wash layer-${activeMapLayer.color} ${isLayerTransitioning ? "is-active" : ""}`} aria-hidden="true" />
+            <div className={`map-focus-card pointer-events-none absolute bottom-5 left-5 z-10 hidden border border-[#1f2623]/25 bg-[#f7f5ee]/90 px-4 py-3 font-mono text-[9px] uppercase leading-5 tracking-[.13em] text-[#273631] backdrop-blur-sm sm:block ${isLayerTransitioning ? "is-transitioning" : ""}`}><span className="block text-[#9a721a]">{activeMapLayer.code} / {activeMapLayer.label}</span><span className="mt-1 block max-w-[230px] normal-case tracking-normal text-[#59605b]">{activeMapLayer.description}</span></div>
             <div className="pointer-events-none absolute bottom-5 right-5 z-10 bg-[#1d2422] px-3 py-2 font-mono text-[9px] uppercase tracking-[.13em] text-white/80">WGS84 / ZIBo Bogotá</div>
           </div>
         </section>
