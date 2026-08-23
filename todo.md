@@ -19,4 +19,14 @@
 - [ ] Verificar el estado remoto y preparar la versión RAPOT para el repositorio seleccionado.
 - [ ] Enviar los cambios de RAPOT a `alejagoguti-cpu/modelamiento`.
 
+## Verificación de estructura en GitHub
+
+- [x] Confirmar que las carpetas `apis`, `assets`, `backend`, `data`, `frontend`, `mobile-audit`, `qa-reports` y `tools` están publicadas en la raíz del repositorio.
+
+## Ajuste cartográfico ZIBo
+
+- [x] Verificar las coordenadas y el polígono oficial de la Actuación Estratégica ZIBo.
+- [x] Centrar y describir el explorador RAPOT con la ubicación oficial de ZIBo Bogotá.
+- [x] Validar visualmente el ajuste cartográfico y sincronizarlo con GitHub.
+
 > La aplicación estática reside actualmente en `client/`; la carpeta `frontend/` se utiliza como espacio documental y de integración para conservar la estructura requerida sin romper el entorno de desarrollo.
