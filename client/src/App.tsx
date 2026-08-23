@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 function Router() {
   return (
     <Switch>
+      <Route path={import.meta.env.BASE_URL} component={Home} />
       <Route path={"/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
