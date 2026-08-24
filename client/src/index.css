@@ -165,3 +165,129 @@ body, .rapot-shell { background: #f8fbff !important; color: #102337 !important; 
   .section-frame h2 { font-size: 1.9rem !important; }
   .layer-card h3 { font-size: 1.45rem !important; }
 }
+
+/* ================================================================
+   REDISEÑO INTEGRAL RAPOT — nuevo modelo de ciudad
+   Dirección: editorial urbana, clara, cálida y contemporánea.
+   ================================================================ */
+:root {
+  --rapot-navy: #071b31;
+  --rapot-navy-2: #0d2a47;
+  --rapot-ink: #102337;
+  --rapot-muted: #5d7081;
+  --rapot-blue: #2679c6;
+  --rapot-sky: #8ec7ef;
+  --rapot-yellow: #f2b84b;
+  --rapot-paper: #f7f9fb;
+  --rapot-line: #d9e3eb;
+  --rapot-radius: 18px;
+  --rapot-shadow: 0 18px 50px rgba(7,27,49,.10);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--rapot-paper) !important; color: var(--rapot-ink) !important; font-family: "Montserrat", Arial, sans-serif !important; letter-spacing: -.01em !important; }
+.rapot-shell { background: var(--rapot-paper) !important; color: var(--rapot-ink) !important; }
+.rapot-shell main { overflow: visible !important; }
+
+/* Header */
+.rapot-shell header { height: 76px !important; background: rgba(7,27,49,.94) !important; border-bottom: 1px solid rgba(142,199,239,.18) !important; box-shadow: 0 8px 24px rgba(7,27,49,.14); }
+.rapot-shell header > div { height: 76px !important; }
+.rapot-shell header::after { left: 0 !important; right: 0 !important; bottom: 0 !important; background: linear-gradient(90deg, transparent, var(--rapot-sky), transparent) !important; opacity: .7; }
+.brand-lockup { gap: .7rem !important; }
+.brand-mark { width: 34px !important; height: 34px !important; border-radius: 9px; background: #fff; padding: 4px; filter: none !important; }
+.brand-lockup span { color: #fff !important; font-size: 1rem !important; letter-spacing: .18em !important; font-weight: 700 !important; }
+.nav-link { color: rgba(255,255,255,.72) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .72rem !important; font-weight: 600 !important; letter-spacing: .08em !important; text-transform: none !important; }
+.nav-link:hover { color: #fff !important; transform: none !important; }
+.nav-link::after { background: var(--rapot-yellow) !important; height: 2px !important; }
+.menu-button { border-radius: 10px !important; }
+.mobile-nav { background: var(--rapot-navy) !important; padding: 1rem 1.25rem 1.25rem !important; }
+.mobile-nav-link { color: #fff !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .85rem !important; letter-spacing: .04em !important; }
+
+/* Shared type scale */
+.eyebrow { color: var(--rapot-blue) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .68rem !important; font-weight: 700 !important; letter-spacing: .16em !important; }
+.section-frame { background: var(--rapot-paper) !important; border-color: var(--rapot-line) !important; padding-top: clamp(4.5rem, 8vw, 8rem) !important; padding-bottom: clamp(4.5rem, 8vw, 8rem) !important; }
+.section-frame h2 { color: var(--rapot-ink) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: clamp(2.2rem, 4.2vw, 4.6rem) !important; font-weight: 700 !important; line-height: 1.03 !important; letter-spacing: -.055em !important; }
+.section-frame p { color: var(--rapot-muted) !important; font-size: 1rem !important; line-height: 1.7 !important; }
+.section-frame::before { top: 2rem !important; left: 2rem !important; width: 22px !important; height: 22px !important; border-color: rgba(38,121,198,.28) !important; }
+.section-frame::after { top: 2rem !important; left: 2rem !important; width: 5px !important; height: 5px !important; background: var(--rapot-blue) !important; }
+
+/* Hero */
+.hero-section { min-height: 760px !important; align-items: center !important; background: var(--rapot-navy) !important; padding-top: 76px !important; }
+.hero-section > img { left: auto !important; right: 0 !important; width: 53% !important; object-position: center !important; opacity: .84 !important; clip-path: polygon(14% 0,100% 0,100% 100%,0 100%) !important; filter: none !important; animation: none !important; }
+.hero-section > div:nth-of-type(1) { background: linear-gradient(90deg, var(--rapot-navy) 0%, rgba(7,27,49,.98) 30%, rgba(7,27,49,.68) 54%, rgba(7,27,49,.12) 100%) !important; }
+.hero-section > div:nth-of-type(3) { height: 12rem !important; background: linear-gradient(0deg, var(--rapot-navy), transparent) !important; }
+.hero-section .relative.mx-auto { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+.hero-kicker { color: var(--rapot-sky) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .72rem !important; font-weight: 700 !important; letter-spacing: .15em !important; }
+.hero-title { max-width: 790px !important; color: #fff !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: clamp(3rem, 6.2vw, 6.7rem) !important; font-weight: 700 !important; line-height: .98 !important; letter-spacing: -.065em !important; }
+.hero-copy { max-width: 510px !important; color: rgba(232,244,252,.78) !important; font-size: clamp(1rem, 1.25vw, 1.12rem) !important; line-height: 1.7 !important; }
+.hero-index { max-width: 790px !important; border-color: rgba(142,199,239,.35) !important; color: rgba(232,244,252,.65) !important; font-size: .68rem !important; letter-spacing: .08em !important; }
+.primary-cta, .hero-layers-toggle { min-height: 48px; border-radius: 10px !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .68rem !important; font-weight: 700 !important; letter-spacing: .06em !important; transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease !important; }
+.primary-cta { background: var(--rapot-yellow) !important; border-color: var(--rapot-yellow) !important; color: var(--rapot-navy) !important; }
+.primary-cta:hover { background: #ffd27b !important; color: var(--rapot-navy) !important; transform: translateY(-2px); }
+.hero-layers-toggle { border-color: rgba(255,255,255,.34) !important; color: #fff !important; }
+.hero-layers-toggle:hover { border-color: var(--rapot-sky) !important; background: rgba(142,199,239,.12) !important; transform: translateY(-2px); }
+.hero-coordinate { background: var(--rapot-yellow) !important; opacity: .7; }
+.hero-node b { font-family: "Montserrat", Arial, sans-serif !important; font-size: .68rem !important; }
+
+/* Indicators */
+.section-frame:has(.data-cell) { background: var(--rapot-navy-2) !important; color: #fff !important; padding-top: clamp(4rem, 7vw, 6.5rem) !important; padding-bottom: clamp(4rem, 7vw, 6.5rem) !important; }
+.section-frame:has(.data-cell) h2 { color: #fff !important; font-size: clamp(2rem, 3.7vw, 3.8rem) !important; }
+.section-frame:has(.data-cell) p { color: rgba(232,244,252,.72) !important; }
+.section-frame:has(.data-cell) .eyebrow { color: var(--rapot-sky) !important; }
+.data-cell { padding: 2rem !important; border-color: rgba(142,199,239,.20) !important; background: rgba(255,255,255,.025); transition: background 180ms ease, transform 180ms ease !important; }
+.data-cell:hover { background: rgba(142,199,239,.09) !important; transform: translateY(-3px) !important; }
+.data-cell p:first-child { color: var(--rapot-yellow) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: clamp(2.4rem, 4.3vw, 4.2rem) !important; font-weight: 700 !important; line-height: 1 !important; }
+.data-cell h3 { color: #fff !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .82rem !important; letter-spacing: .08em !important; }
+
+/* Content cards */
+.layer-card { border: 1px solid var(--rapot-line) !important; border-radius: var(--rapot-radius) !important; box-shadow: none !important; overflow: hidden !important; }
+.layer-card:hover { border-color: rgba(38,121,198,.55) !important; box-shadow: var(--rapot-shadow) !important; transform: translateY(-4px) !important; }
+.layer-card h3 { color: var(--rapot-ink) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: clamp(1.55rem, 2.35vw, 2.45rem) !important; font-weight: 700 !important; line-height: 1.08 !important; letter-spacing: -.045em !important; }
+.layer-card p { font-size: .95rem !important; line-height: 1.65 !important; }
+.layer-card .font-mono, .layer-scale { font-family: "Montserrat", Arial, sans-serif !important; font-size: .68rem !important; letter-spacing: .1em !important; }
+.layer-green { background: #e5f0eb !important; }.layer-blue { background: #e3f0f8 !important; }.layer-amber { background: var(--rapot-navy-2) !important; }.layer-community { background: var(--rapot-navy) !important; }
+.layer-amber h3, .layer-community h3, .layer-amber p, .layer-community p { color: #fff !important; }
+.card-image { filter: none !important; transition: transform 500ms cubic-bezier(.23,1,.32,1) !important; }
+.layer-card:hover .card-image { filter: none !important; transform: scale(1.04) !important; }
+
+/* Map */
+.map-reference-shell { border: 1px solid var(--rapot-line) !important; border-radius: var(--rapot-radius) !important; overflow: hidden !important; box-shadow: var(--rapot-shadow) !important; }
+.map-rail { background: #eef4f8 !important; border-color: var(--rapot-line) !important; color: var(--rapot-muted) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .62rem !important; }
+.map-layer-switcher { border-radius: 12px !important; background: rgba(247,249,251,.96) !important; }
+.map-layer-button { border-radius: 8px !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: .62rem !important; }
+.map-focus-card { border-radius: 12px !important; }
+
+/* FAQ / participation / downloads */
+#preguntas, #participa { background: #fff !important; }
+#preguntas summary { padding: 1.2rem 0 !important; color: var(--rapot-ink) !important; font-family: "Montserrat", Arial, sans-serif !important; font-size: clamp(1rem, 1.7vw, 1.25rem) !important; font-weight: 600 !important; }
+#preguntas details { border-bottom: 1px solid var(--rapot-line) !important; }
+#preguntas details p { max-width: 42rem; padding: 0 0 1.2rem !important; }
+#participa form { border: 1px solid #cbd9e4 !important; border-radius: var(--rapot-radius) !important; background: #f4f8fb !important; box-shadow: var(--rapot-shadow) !important; }
+#participa input, #participa select, #participa textarea { border-radius: 9px !important; border-color: #bdd0df !important; background: #fff !important; color: var(--rapot-ink) !important; }
+#participa button[type="submit"], #participa a { border-radius: 9px !important; font-family: "Montserrat", Arial, sans-serif !important; }
+
+/* Footer */
+.site-footer { background: var(--rapot-navy) !important; border-top: 0 !important; color: #fff !important; }
+.site-footer p, .site-footer span { color: rgba(232,244,252,.62) !important; }
+.site-footer .brand-mark { background: #fff; }
+
+@media (max-width: 800px) {
+  .hero-section { min-height: 720px !important; align-items: flex-end !important; }
+  .hero-section > img { width: 100% !important; height: 58% !important; top: 76px !important; bottom: auto !important; clip-path: none !important; opacity: .38 !important; }
+  .hero-section > div:nth-of-type(1) { background: linear-gradient(180deg, rgba(7,27,49,.38), var(--rapot-navy) 72%) !important; }
+  .hero-section .relative.mx-auto { padding-top: 8rem !important; padding-bottom: 3.5rem !important; }
+  .hero-title { font-size: clamp(2.65rem, 10vw, 4.5rem) !important; }
+  .hero-index { margin-top: 3rem !important; gap: 1rem !important; }
+  .section-frame h2 { font-size: clamp(2.1rem, 9vw, 3.3rem) !important; }
+}
+@media (max-width: 420px) {
+  .rapot-shell header, .rapot-shell header > div { height: 68px !important; }
+  .hero-section { padding-top: 68px !important; min-height: 700px !important; }
+  .hero-section > img { top: 68px !important; }
+  .hero-title { font-size: 2.5rem !important; }
+  .hero-copy { font-size: .95rem !important; }
+  .hero-index { grid-template-columns: 1fr !important; border-top: 0 !important; gap: .6rem !important; }
+  .hero-index span { border-top: 1px solid rgba(142,199,239,.25); padding-top: .6rem; }
+  .section-frame { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  .data-cell { padding: 1.4rem !important; }
+}
