@@ -46,8 +46,10 @@ function scrollToSection(id: string) {
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapTimedOut, setMapTimedOut] = useState(false);
   const [activeLayerId, setActiveLayerId] = useState("polygon");
   const [isLayerTransitioning, setIsLayerTransitioning] = useState(false);
+  const [heroLayersOpen, setHeroLayersOpen] = useState(false);
   const activeMapLayer = mapLayers.find(layer => layer.id === activeLayerId) ?? mapLayers[0];
 
   useEffect(() => {
@@ -73,7 +75,11 @@ export default function Home() {
       });
     }
 
-    return () => observer.disconnect();
+    const mapTimeout = window.setTimeout(() => setMapTimedOut(true), 12000);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(mapTimeout);
+    };
   }, []);
 
   const goTo = (id: string) => {
@@ -121,6 +127,12 @@ export default function Home() {
         <section id="inicio" className="hero-section relative isolate flex min-h-[780px] items-end overflow-hidden bg-[#1c2420] pt-20 text-white">
           <img src={heroImage} alt="Corredor urbano industrial en transformación" className="hero-image absolute inset-0 h-full w-full object-cover object-center" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,27,25,.92)_0%,rgba(20,27,25,.62)_35%,rgba(20,27,25,.18)_70%,rgba(20,27,25,.2)_100%)]" />
+          <div className={`hero-layer-overlay absolute inset-0 ${heroLayersOpen ? "is-visible" : ""}`} aria-hidden={!heroLayersOpen}>
+            <span className="hero-scanline" />
+            <span className="hero-node hero-node-one"><i /><b>01 / Trabajo</b></span>
+            <span className="hero-node hero-node-two"><i /><b>02 / Cuidado</b></span>
+            <span className="hero-node hero-node-three"><i /><b>03 / Paisaje</b></span>
+          </div>
           <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#1c2420] to-transparent" />
           <div className="hero-coordinate absolute left-[6%] top-[18%] h-28 w-px bg-[#f2b84b]" />
           <div className="absolute right-[5%] top-[24%] hidden rotate-90 font-mono text-[10px] uppercase tracking-[.3em] text-white/60 lg:block">04°38' N · 74°05' O</div>
@@ -129,9 +141,14 @@ export default function Home() {
             <div className="max-w-4xl">
               <h1 className="hero-title max-w-3xl text-balance text-[clamp(3.25rem,8vw,7.5rem)] font-extrabold leading-[.86] tracking-[-.075em]">La ciudad empieza donde las capas se encuentran.</h1>
               <p className="hero-copy mt-8 max-w-lg text-base leading-7 text-white/80 sm:text-lg">Un territorio de conexiones: producción, vivienda, paisaje y cultura. RAPOT propone una lectura activa de lo que ya existe y de lo que puede venir.</p>
-              <button onClick={() => goTo("mapa")} className="primary-cta mt-10 inline-flex items-center gap-3 border border-[#f2b84b] bg-[#f2b84b] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#1d2422]">
-                Ver mapa de referencia <ArrowDownRight size={16} />
-              </button>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <button onClick={() => goTo("mapa")} className="primary-cta inline-flex items-center gap-3 border border-[#f2b84b] bg-[#f2b84b] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#1d2422]">
+                  Ver mapa de referencia <ArrowDownRight size={16} />
+                </button>
+                <button type="button" onClick={() => setHeroLayersOpen(open => !open)} aria-expanded={heroLayersOpen} className="hero-layers-toggle inline-flex items-center gap-2 border border-white/35 px-4 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-white/85">
+                  {heroLayersOpen ? "Ocultar capas" : "Explorar capas"} <Sparkles size={14} />
+                </button>
+              </div>
             </div>
             <div className="hero-index mt-20 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-5 font-mono text-[10px] uppercase tracking-[.12em] text-white/70 sm:gap-8">
               <span>01 / Atlas vivo</span><span>02 / Lectura territorial</span><span>03 / Proyecto abierto</span>
@@ -169,8 +186,9 @@ export default function Home() {
               <div className="flex items-center gap-2 px-2 pb-2 pt-1 font-mono text-[9px] font-bold uppercase tracking-[.14em] text-[#59605b]"><Sparkles size={12} className="text-[#b78417]" /> Capas de lectura</div>
               <div className="flex flex-wrap gap-1">{mapLayers.map(layer => <button key={layer.id} type="button" onClick={() => selectMapLayer(layer.id)} aria-pressed={activeLayerId === layer.id} className={`map-layer-button ${activeLayerId === layer.id ? `is-active is-${layer.color}` : ""}`}><span>{layer.code}</span>{layer.label}</button>)}</div>
             </div>
-            <div className={`map-loader absolute inset-0 z-10 grid place-items-center bg-[#f7f5ee] ${mapLoaded ? "is-loaded" : ""}`} aria-live="polite"><div className="text-center"><span className="loading-bars mx-auto mb-5 flex gap-1.5"><i /><i /><i /></span><p className="font-mono text-[10px] uppercase tracking-[.17em] text-[#59605b]">Cargando el visor oficial ZIBo</p></div></div>
-            <iframe title="Mapa interactivo de la experiencia de referencia" src={referenceMapUrl} onLoad={() => setMapLoaded(true)} className="block h-[90vh] min-h-[620px] w-full border-0 outline-none" allowFullScreen />
+            <div className={`map-loader absolute inset-0 z-10 grid place-items-center bg-[#f7f5ee] ${mapLoaded || mapTimedOut ? "is-loaded" : ""}`} aria-live="polite"><div className="text-center"><span className="loading-bars mx-auto mb-5 flex gap-1.5"><i /><i /><i /></span><p className="font-mono text-[10px] uppercase tracking-[.17em] text-[#59605b]">Cargando el visor oficial ZIBo</p></div></div>
+            <iframe title="Mapa interactivo de la experiencia de referencia" src={referenceMapUrl} onLoad={() => { setMapLoaded(true); setMapTimedOut(false); }} className="block h-[90vh] min-h-[620px] w-full border-0 outline-none" allowFullScreen />
+            {mapTimedOut && !mapLoaded && <div className="map-timeout-card absolute inset-x-5 top-24 z-10 max-w-md border border-[#0a4d88]/30 bg-[#f8fbff]/95 p-5 shadow-[0_14px_32px_rgba(7,27,49,.14)] backdrop-blur-sm sm:left-8"><p className="font-mono text-[9px] font-bold uppercase tracking-[.15em] text-[#0a4d88]">Carga externa demorada</p><p className="mt-3 text-sm leading-6 text-[#4c6378]">La experiencia ArcGIS no terminó de inicializarse aquí. Puedes abrirla directamente para conservar todas sus herramientas.</p><a href={referenceMapUrl} target="_blank" rel="noreferrer" className="text-link mt-4 inline-flex items-center gap-2 border-b border-[#0a4d88] pb-2 font-mono text-[10px] font-bold uppercase tracking-[.14em]">Abrir experiencia oficial <ArrowUpRight size={14} /></a></div>}
             <div className={`map-layer-wash layer-${activeMapLayer.color} ${isLayerTransitioning ? "is-active" : ""}`} aria-hidden="true" />
             <div className={`map-focus-card pointer-events-none absolute bottom-5 left-5 z-10 hidden border border-[#1f2623]/25 bg-[#f7f5ee]/90 px-4 py-3 font-mono text-[9px] uppercase leading-5 tracking-[.13em] text-[#273631] backdrop-blur-sm sm:block ${isLayerTransitioning ? "is-transitioning" : ""}`}><span className="block text-[#9a721a]">{activeMapLayer.code} / {activeMapLayer.label}</span><span className="mt-1 block max-w-[230px] normal-case tracking-normal text-[#59605b]">{activeMapLayer.description}</span></div>
             <div className="pointer-events-none absolute bottom-5 right-5 z-10 bg-[#1d2422] px-3 py-2 font-mono text-[9px] uppercase tracking-[.13em] text-white/80">WGS84 / ZIBo Bogotá</div>
