@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo RAPOT</title>
+  <desc id="desc">Símbolo geométrico de cuatro nodos para RAPOT</desc>
+  <rect width="256" height="256" rx="28" fill="#1d2422"/>
+  <path d="M128 30 226 128 128 226 30 128Z" fill="none" stroke="#f2b84b" stroke-width="7"/>
+  <path d="m128 62 66 66-66 66-66-66Z" fill="#f2b84b"/>
+  <path d="M128 83 173 128 128 173 83 128Z" fill="#1d2422"/>
+  <circle cx="128" cy="62" r="8" fill="#f7f5ee"/>
+  <circle cx="194" cy="128" r="8" fill="#f7f5ee"/>
+  <circle cx="128" cy="194" r="8" fill="#f7f5ee"/>
+  <circle cx="62" cy="128" r="8" fill="#f7f5ee"/>
+</svg>

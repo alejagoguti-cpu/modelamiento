@@ -18,10 +18,11 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const heroImage = "/manus-storage/nodo-hero-industrial_03cbe471.jpg";
-const heritageImage = "/manus-storage/nodo-benefit-patrimonio_7edc3ed1.jpg";
-const corridorImage = "/manus-storage/nodo-benefit-corredor_2f05e330.jpg";
-const brandMark = "/manus-storage/nodo-symbol_9f307b77.png";
+const mediaUrl = (filename: string) => `${import.meta.env.BASE_URL}media/${filename}`;
+const heroImage = mediaUrl("hero-industrial.svg");
+const heritageImage = mediaUrl("heritage-industrial.svg");
+const corridorImage = mediaUrl("corridor-green.svg");
+const brandMark = mediaUrl("rapot-symbol.svg");
 const referenceMapUrl = "https://experience.arcgis.com/experience/1278bd076fc74e78be56f7ac592f75f8";
 
 const indicators = [
