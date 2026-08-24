@@ -128,3 +128,8 @@ body, .rapot-shell { background: #f8fbff !important; color: #102337 !important; 
   .layer-amber .card-image { height: 11.5rem !important; }
   .layer-community { min-height: 17rem !important; }
 }
+
+/* Transición de llegada al navegar entre secciones. */
+.section-frame.is-section-arriving { animation: rapot-section-arrive 680ms var(--ease-out) both; }
+@keyframes rapot-section-arrive { from { opacity: .72; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .section-frame.is-section-arriving { animation: none; } }
