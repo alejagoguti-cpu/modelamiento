@@ -141,3 +141,27 @@ body, .rapot-shell { background: #f8fbff !important; color: #102337 !important; 
 .faq-plus { display: inline-block; }
 #participa input, #participa select, #participa textarea { border-radius: 0; font-family: "Montserrat", sans-serif; }
 @media (max-width: 640px) { .faq-item summary { font-size: 1rem; line-height: 1.35; } #participa input, #participa select, #participa textarea { font-size: 16px; } }
+
+/* Escala tipográfica unificada: RapOt / Montserrat */
+:root {
+  --type-hero: clamp(2.75rem, 6.2vw, 6.25rem);
+  --type-section: clamp(2rem, 4vw, 4.15rem);
+  --type-card: clamp(1.5rem, 2.35vw, 2.45rem);
+  --type-body: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+.hero-title { font-size: var(--type-hero) !important; line-height: .96 !important; letter-spacing: -.045em !important; }
+.section-frame h2 { font-size: var(--type-section) !important; line-height: 1.02 !important; letter-spacing: -.045em !important; }
+.layer-card h3 { font-size: var(--type-card) !important; line-height: 1.06 !important; letter-spacing: -.035em !important; }
+.section-frame p { font-size: var(--type-body); line-height: 1.65; }
+.data-cell p:first-child { font-size: clamp(2rem, 4.5vw, 3.6rem) !important; line-height: 1 !important; }
+@media (max-width: 640px) {
+  .hero-title { font-size: clamp(2.55rem, 12vw, 4.4rem) !important; line-height: .98 !important; }
+  .section-frame h2 { font-size: clamp(2rem, 9vw, 3.25rem) !important; }
+  .layer-card h3 { font-size: clamp(1.5rem, 7vw, 2.15rem) !important; }
+  .section-frame p { font-size: .97rem; line-height: 1.6; }
+}
+@media (max-width: 380px) {
+  .hero-title { font-size: 2.35rem !important; }
+  .section-frame h2 { font-size: 1.9rem !important; }
+  .layer-card h3 { font-size: 1.45rem !important; }
+}
