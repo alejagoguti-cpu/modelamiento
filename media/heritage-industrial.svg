@@ -1,25 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" role="img" aria-labelledby="title desc">
-  <title id="title">Antigua nave industrial recuperada</title>
-  <desc id="desc">Ilustración de una nave de ladrillo con estructura productiva y luz cálida</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#122c38"/><stop offset="1" stop-color="#244653"/></linearGradient>
-    <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9e5237"/><stop offset="1" stop-color="#60362e"/></linearGradient>
-    <linearGradient id="light" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f2b84b" stop-opacity=".86"/><stop offset="1" stop-color="#f2b84b" stop-opacity=".12"/></linearGradient>
-  </defs>
-  <rect width="1000" height="760" fill="url(#bg)"/>
-  <circle cx="790" cy="130" r="90" fill="#f2b84b" opacity=".16"/>
-  <path d="M80 650 165 265 330 170 505 265 660 190 920 295v355H80Z" fill="url(#brick)" stroke="#e1aa54" stroke-width="7"/>
-  <path d="M165 265 330 170 505 265M505 265 660 190 920 295" fill="none" stroke="#e1aa54" stroke-width="7"/>
-  <g fill="#17323a" stroke="#efc56b" stroke-width="5">
-    <path d="M185 330h112v158H185zM336 306h112v182H336zM489 330h112v158H489zM642 300h112v188H642zM795 346h85v142h-85z"/>
-  </g>
-  <g fill="url(#light)" opacity=".55">
-    <path d="M201 348h80v116h-80zM352 324h80v138h-80zM505 348h80v116h-80zM658 318h80v144h-80zM808 364h59v100h-59z"/>
-  </g>
-  <g stroke="#1a2b2c" stroke-width="7" opacity=".7">
-    <path d="M80 650h840M132 575h760M120 610h800"/>
-    <path d="M210 650V495M362 650V488M515 650V495M668 650V488M820 650V488"/>
-  </g>
-  <g fill="#f2b84b" opacity=".9"><circle cx="112" cy="615" r="11"/><circle cx="885" cy="603" r="11"/><circle cx="250" cy="220" r="7"/><circle cx="704" cy="168" r="7"/></g>
-  <path d="M0 690h1000v70H0z" fill="#0d1d20" opacity=".8"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de patrimonio industrial</title>
+  <desc id="desc">Imagen original de patrimonio industrial pendiente de incorporar.</desc>
+  <rect width="1000" height="560" fill="#0d2942"/><path d="M0 425h1000v135H0z" fill="#071b31"/><path d="M90 425V180l120-105 120 105v245M330 425V180l120-105 120 105v245M570 425V180l120-105 120 105v245" fill="none" stroke="#77b2dc" stroke-opacity=".6" stroke-width="8"/><path d="M120 425h680M210 230h50v72h-50zM365 230h50v72h-50zM520 230h50v72h-50zM675 230h50v72h-50z" fill="#58a8e5" fill-opacity=".36" stroke="#a7d0ea" stroke-opacity=".65" stroke-width="3"/><text x="60" y="70" fill="#a7d0ea" font-family="monospace" font-size="22" letter-spacing="4">NODO / ASSET STATUS</text><text x="60" y="505" fill="#f4f8fb" font-family="Georgia,serif" font-size="38">Patrimonio industrial pendiente</text></svg>

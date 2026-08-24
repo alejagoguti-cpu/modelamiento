@@ -1,28 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
-  <title id="title">Corredor verde con sendero y edificios industriales</title>
-  <desc id="desc">Ilustración de un corredor peatonal verde entre arquitectura y paisaje</desc>
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#92b9bd"/><stop offset="1" stop-color="#d7d3b4"/></linearGradient>
-    <linearGradient id="path" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#d8c98b"/><stop offset="1" stop-color="#f1e8c8"/></linearGradient>
-    <linearGradient id="building" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#17434d"/><stop offset="1" stop-color="#0d2b32"/></linearGradient>
-  </defs>
-  <rect width="1200" height="900" fill="url(#sky)"/>
-  <circle cx="965" cy="155" r="120" fill="#f2b84b" opacity=".5"/>
-  <path d="M0 450 200 330 410 445 615 305 830 425 1020 275 1200 355V900H0Z" fill="#507b72" opacity=".65"/>
-  <path d="M0 570 230 475 435 550 680 430 910 520 1200 420V900H0Z" fill="#1c514c" opacity=".92"/>
-  <g fill="url(#building)" stroke="#e4bf68" stroke-width="5">
-    <path d="M40 240h180v330H40z"/><path d="M220 300h205v270H220z"/><path d="M790 230h190v340H790z"/><path d="M980 305h180v265H980z"/>
-  </g>
-  <g fill="#a6c9c3" opacity=".75">
-    <path d="M70 275h45v55H70zM140 275h45v55h-45zM70 365h45v55H70zM140 365h45v55h-45zM252 340h48v58h-48zM330 340h48v58h-48zM252 430h48v58h-48zM330 430h48v58h-48z"/>
-    <path d="M825 270h50v60h-50zM905 270h50v60h-50zM825 365h50v60h-50zM905 365h50v60h-50zM1015 345h45v55h-45zM1085 345h45v55h-45zM1015 430h45v55h-45zM1085 430h45v55h-45z"/>
-  </g>
-  <path d="M590 900C485 775 510 665 600 590c92-76 140-146 80-245 144 135 166 252 85 341-65 73-57 149 14 214Z" fill="url(#path)" stroke="#f3e8bd" stroke-width="7"/>
-  <g fill="#254e40">
-    <path d="M300 710c-45-128-13-203 47-272 51 98 60 172 10 272Z"/><path d="M382 715c-21-93 14-175 81-232 17 105-9 178-40 232Z"/>
-    <path d="M855 705c-41-123-8-195 49-258 47 94 51 168 7 258Z"/><path d="M945 705c-18-83 14-157 70-211 15 95-9 159-35 211Z"/>
-    <path d="M710 520c-20-78 5-137 47-184 30 67 26 119-7 184Z"/>
-  </g>
-  <g fill="#f2b84b"><circle cx="318" cy="620" r="9"/><circle cx="895" cy="617" r="9"/><circle cx="732" cy="470" r="7"/></g>
-  <path d="M0 825h1200v75H0z" fill="#0f282a" opacity=".75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de corredor verde</title>
+  <desc id="desc">Imagen original del corredor verde pendiente de incorporar.</desc>
+  <rect width="1200" height="700" fill="#12364c"/><path d="M0 540c180-120 310-105 470-20s290 120 430 15 230-85 300-60v225H0Z" fill="#0b2337"/><path d="M-40 610c220-130 380-115 560-28s325 108 510 5 250-70 250-70" fill="none" stroke="#72b4d9" stroke-opacity=".7" stroke-width="7"/><path d="M0 610c230-88 370-58 550 20s360 98 650-26" fill="none" stroke="#d7eaf6" stroke-opacity=".45" stroke-width="2"/><g fill="#58a8e5" fill-opacity=".7"><circle cx="250" cy="330" r="12"/><circle cx="610" cy="450" r="12"/><circle cx="920" cy="290" r="12"/></g><g stroke="#9ed0ef" stroke-opacity=".35" stroke-width="3"><path d="M250 330v190M610 450v80M920 290v240"/></g><text x="70" y="95" fill="#a7d0ea" font-family="monospace" font-size="24" letter-spacing="5">TRAMA / ASSET STATUS</text><text x="70" y="625" fill="#f4f8fb" font-family="Georgia,serif" font-size="46">Corredor verde pendiente</text><text x="73" y="667" fill="#a7d0ea" font-family="monospace" font-size="18" letter-spacing="3">PLACEHOLDER · REEMPLAZAR CON ARCHIVO ORIGINAL</text></svg>

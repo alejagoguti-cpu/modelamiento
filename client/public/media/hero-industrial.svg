@@ -1,48 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">Corredor urbano industrial en transformación</title>
-  <desc id="desc">Ilustración abstracta de un corredor industrial, edificios y paisaje urbano</desc>
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#102c3d"/>
-      <stop offset=".55" stop-color="#1d3b45"/>
-      <stop offset="1" stop-color="#d2a747"/>
-    </linearGradient>
-    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#2c514e"/>
-      <stop offset="1" stop-color="#111b1a"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#90bfc0" stop-opacity=".8"/>
-      <stop offset="1" stop-color="#1b4852" stop-opacity=".25"/>
-    </linearGradient>
-    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
-  </defs>
-  <rect width="1600" height="900" fill="url(#sky)"/>
-  <circle cx="1240" cy="210" r="150" fill="#f2b84b" opacity=".36" filter="url(#soft)"/>
-  <path d="M0 520 240 400 420 480 600 350 800 490 1000 330 1220 455 1430 330 1600 425V900H0Z" fill="#122426" opacity=".78"/>
-  <path d="M0 575 180 520 350 600 510 495 730 610 920 470 1120 590 1300 480 1600 590V900H0Z" fill="url(#ground)"/>
-  <g opacity=".85">
-    <path d="M90 210h255v355H90z" fill="#132c35" stroke="#6fa4a9" stroke-width="4"/>
-    <path d="M345 295h170v270H345z" fill="#183943" stroke="#d6b44f" stroke-width="3"/>
-    <path d="M515 245h230v320H515z" fill="#1a3034" stroke="#86b8b4" stroke-width="4"/>
-    <path d="M745 335h145v230H745z" fill="#d19f3f" opacity=".65"/>
-    <path d="M880 270h250v295H880z" fill="url(#glass)" stroke="#a8c9c2" stroke-width="3"/>
-    <path d="M1130 385h160v180h-160z" fill="#1e4146" stroke="#ddbd5d" stroke-width="3"/>
-    <path d="M1290 250h230v315h-230z" fill="#173238" stroke="#76a9aa" stroke-width="4"/>
-  </g>
-  <g fill="#f2b84b" opacity=".75">
-    <path d="M125 265h32v42h-32zM180 265h32v42h-32zM235 265h32v42h-32zM125 340h32v42h-32zM180 340h32v42h-32zM235 340h32v42h-32z"/>
-    <path d="M560 300h29v38h-29zM610 300h29v38h-29zM660 300h29v38h-29zM560 370h29v38h-29zM610 370h29v38h-29zM660 370h29v38h-29z"/>
-    <path d="M1330 300h32v42h-32zM1385 300h32v42h-32zM1440 300h32v42h-32zM1330 375h32v42h-32zM1385 375h32v42h-32zM1440 375h32v42h-32z"/>
-  </g>
-  <g stroke="#d7d2b9" stroke-width="3" opacity=".55" fill="none">
-    <path d="M0 735 470 630 910 735 1600 590"/>
-    <path d="M80 835 520 695 1020 810 1600 690"/>
-    <path d="M420 900 790 650M900 900 1050 610M1260 900 1330 590"/>
-  </g>
-  <g fill="#1b3430">
-    <path d="M165 600c-25-70-8-119 18-161 29 56 37 107 12 161Z"/><path d="M230 608c-14-52 0-102 34-138 16 57 7 103-12 138Z"/>
-    <path d="M1180 650c-22-67-4-119 28-158 21 59 26 107-2 158Z"/><path d="M1250 650c-13-48 5-92 37-127 12 48 4 91-13 127Z"/>
-  </g>
-  <rect y="0" width="1600" height="900" fill="#0c1718" opacity=".17"/>
+  <title id="title">Placeholder de imagen industrial</title>
+  <desc id="desc">Imagen original pendiente de incorporar.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071b31"/><stop offset="1" stop-color="#183b58"/></linearGradient><pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#80b9df" stroke-opacity=".15"/></pattern></defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <path d="M0 680 290 470l180 100 240-280 220 160 250-240 420 220" fill="none" stroke="#58a8e5" stroke-opacity=".72" stroke-width="3"/>
+  <path d="M0 760 330 550l180 100 250-290 230 160 260-230 350 180" fill="none" stroke="#d2e9f8" stroke-opacity=".35" stroke-width="1"/>
+  <g fill="#58a8e5"><circle cx="290" cy="470" r="9"/><circle cx="710" cy="290" r="9"/><circle cx="1180" cy="210" r="9"/></g>
+  <text x="96" y="150" fill="#9ed0ef" font-family="monospace" font-size="24" letter-spacing="7">RAPOT / ASSET STATUS</text>
+  <text x="96" y="760" fill="#f4f8fb" font-family="Georgia,serif" font-size="72">Imagen industrial pendiente</text>
+  <text x="100" y="820" fill="#9ed0ef" font-family="monospace" font-size="20" letter-spacing="4">PLACEHOLDER · REEMPLAZAR CON ARCHIVO ORIGINAL</text>
 </svg>
