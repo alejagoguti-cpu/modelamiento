@@ -37,11 +37,17 @@ const faqItems = [
   ["¿Cómo pueden participar los ciudadanos?", "Pueden compartir prioridades, recorridos, necesidades y propuestas. La opinión ciudadana ayuda a convertir el modelo en decisiones urbanas más útiles y legítimas."],
 ];
 
+const indicatorGroups = ["Todos", "Proximidad", "Movilidad", "Bienestar", "Equidad"];
+
 const indicators = [
-  ["28 ha", "Territorio conectado", "Un ámbito urbano para integrar oportunidades y bienestar"],
-  ["3.4 km", "Ciudad caminable", "Distancias cotidianas más cortas y accesibles"],
-  ["17", "Activos urbanos", "Memorias, comunidades y espacios para activar"],
-  ["8 min", "Acceso cercano", "Servicios y oportunidades al alcance de la vida diaria"],
+  { value: "Por calcular", label: "Población a 10 min", detail: "Habitantes con servicios esenciales a una distancia cotidiana", category: "Proximidad", status: "Línea base" },
+  { value: "Por calcular", label: "Tiempo vivienda-empleo", detail: "Minutos promedio para conectar hogares con oportunidades", category: "Movilidad", status: "Línea base" },
+  { value: "Por calcular", label: "Viajes sostenibles", detail: "Caminata, bicicleta y transporte público en la red RapOt", category: "Movilidad", status: "Meta propuesta" },
+  { value: "Por calcular", label: "Espacio público útil", detail: "Superficie accesible, equipada y mantenida por habitante", category: "Bienestar", status: "Línea base" },
+  { value: "Por calcular", label: "Sombra y arbolado", detail: "Recorridos cotidianos con confort climático y paisaje vivo", category: "Bienestar", status: "Meta propuesta" },
+  { value: "Por calcular", label: "Acceso equitativo", detail: "Diferencia de acceso entre sectores y grupos de población", category: "Equidad", status: "Línea base" },
+  { value: "Por calcular", label: "Patrimonio activado", detail: "Activos con uso cultural, productivo o comunitario permanente", category: "Bienestar", status: "En construcción" },
+  { value: "Por calcular", label: "Propuestas incorporadas", detail: "Aportes ciudadanos que se convierten en decisiones o acciones", category: "Equidad", status: "En construcción" },
 ];
 
 const mapLayers = [
@@ -64,7 +70,9 @@ export default function Home() {
   const [heroLayersOpen, setHeroLayersOpen] = useState(false);
   const [arrivingSection, setArrivingSection] = useState<string | null>(null);
   const [feedbackSent, setFeedbackSent] = useState(false);
+  const [indicatorGroup, setIndicatorGroup] = useState("Todos");
   const activeMapLayer = mapLayers.find(layer => layer.id === activeLayerId) ?? mapLayers[0];
+  const visibleIndicators = indicatorGroup === "Todos" ? indicators : indicators.filter(indicator => indicator.category === indicatorGroup);
 
   useEffect(() => {
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -190,8 +198,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-frame bg-[#273631] py-16 text-[#f7f5ee] sm:py-20">
-          <div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-11 flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow !text-[#f2b84b]">02 / Principios del modelo</p><h2 className="mt-4 text-3xl font-bold tracking-[-.04em] sm:text-4xl">Datos para construir una ciudad mejor.</h2></div><p className="max-w-xs font-mono text-[10px] uppercase leading-5 tracking-[.13em] text-white/55">Indicadores que orientan las decisiones del nuevo modelo de ciudad</p></div><div className="grid divide-y divide-white/15 border-y border-white/15 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">{indicators.map(([value, label, detail], index) => <article data-reveal key={label} className="data-cell p-6 sm:p-7" style={{ transitionDelay: `${index * 65}ms` }}><p className="font-mono text-4xl font-bold tracking-[-.07em] text-[#f2b84b]">{value}</p><h3 className="mt-7 text-sm font-bold uppercase tracking-[.12em]">{label}</h3><p className="mt-3 max-w-44 text-sm leading-5 text-white/60">{detail}</p></article>)}</div></div>
+        <section id="indicadores" className="section-frame bg-[#273631] py-16 text-[#f7f5ee] sm:py-20">
+          <div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
+              <div><p className="eyebrow !text-[#f2b84b]">02 / Indicadores del modelo</p><h2 className="mt-4 text-3xl font-bold tracking-[-.04em] sm:text-4xl">Medir para construir una ciudad mejor.</h2></div>
+              <p className="max-w-sm font-mono text-[10px] uppercase leading-5 tracking-[.13em] text-white/55">Métricas accionables para saber qué cambia cuando RapOt se implementa</p>
+            </div>
+            <div className="indicator-controls mb-7 flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar indicadores por dimensión">
+              {indicatorGroups.map(group => <button key={group} type="button" onClick={() => setIndicatorGroup(group)} aria-pressed={indicatorGroup === group} className={`indicator-filter ${indicatorGroup === group ? "is-active" : ""}`}>{group}</button>)}
+            </div>
+            <div className="indicator-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{visibleIndicators.map((indicator, index) => <article data-reveal key={indicator.label} className="data-cell indicator-card p-5 sm:p-6" style={{ transitionDelay: `${index * 45}ms` }}><div className="flex items-start justify-between gap-3"><p className="indicator-value font-mono text-2xl font-bold tracking-[-.05em]">{indicator.value}</p><span className="indicator-status">{indicator.status}</span></div><h3 className="mt-6 text-sm font-bold uppercase tracking-[.08em]">{indicator.label}</h3><p className="mt-2 max-w-52 text-sm leading-5 text-white/60">{indicator.detail}</p><span className="indicator-category mt-5 inline-block font-mono text-[9px] uppercase tracking-[.14em]">{indicator.category}</span></article>)}</div>
+            <div className="indicator-note mt-6 flex flex-col gap-2 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between"><span className="font-mono text-[9px] uppercase tracking-[.14em] text-white/45">RapOt / sistema de medición en construcción</span><span className="text-xs text-white/55">Los valores se publicarán con línea base, fuente y fecha de actualización.</span></div>
+          </div>
         </section>
 
         <section id="capas" className={`section-frame bg-[#eee9dc] py-20 sm:py-28 ${arrivingSection === "capas" ? "is-section-arriving" : ""}`}>
