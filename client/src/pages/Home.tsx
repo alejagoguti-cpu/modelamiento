@@ -61,6 +61,17 @@ export default function Home() {
       { threshold: 0.12 },
     );
     revealItems.forEach(item => observer.observe(item));
+
+    const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+    const deepPath = window.location.pathname
+      .replace(basePath, "")
+      .replace(/^\/+|\/+$/g, "");
+    if (["proyecto", "capas", "mapa", "actualidad"].includes(deepPath)) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(deepPath)?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+    }
+
     return () => observer.disconnect();
   }, []);
 

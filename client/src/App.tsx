@@ -12,6 +12,10 @@ function AppRouter() {
     <WouterRouter base={import.meta.env.BASE_URL}>
       <Switch>
         <Route path={"/"} component={Home} />
+        <Route path={"/proyecto"} component={Home} />
+        <Route path={"/capas"} component={Home} />
+        <Route path={"/mapa"} component={Home} />
+        <Route path={"/actualidad"} component={Home} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
