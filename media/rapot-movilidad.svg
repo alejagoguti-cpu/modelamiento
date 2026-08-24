@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Movilidad y conexión urbana en RapOt</title>
+  <desc id="desc">Infografía referencial de movilidad del modelo RapOt: 3.4 kilómetros de ciudad caminable y 8 minutos de acceso cercano, junto con principios de caminar, pedalear, conectar y cuidar.</desc>
+  <rect width="1600" height="1000" fill="#071b31"/>
+  <path d="M0 145H1600M0 850H1600M110 0V1000M1490 0V1000" stroke="#8ec7ef" stroke-opacity=".2"/>
+  <path d="M80 700C340 500 410 790 650 580S1030 390 1515 165" fill="none" stroke="#58a8e5" stroke-width="10" opacity=".85"/>
+  <path d="M80 760C340 560 470 850 710 640S1080 480 1515 250" fill="none" stroke="#f2b84b" stroke-width="4" stroke-dasharray="18 16" opacity=".9"/>
+  <g fill="#071b31" stroke="#9ed0ef" stroke-width="4"><circle cx="170" cy="666" r="16"/><circle cx="520" cy="676" r="16"/><circle cx="820" cy="515" r="16"/><circle cx="1150" cy="390" r="16"/><circle cx="1450" cy="205" r="16"/></g>
+  <text x="110" y="105" fill="#9ed0ef" font-family="Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="7">RapOt / MOVILIDAD Y CONEXIÓN</text>
+  <text x="110" y="230" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="72" font-weight="700">Moverse mejor</text>
+  <text x="110" y="310" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="72" font-weight="700">también es vivir mejor.</text>
+  <text x="110" y="375" fill="#b9d5e8" font-family="Arial, sans-serif" font-size="24">Una red de proximidad para acercar personas, servicios y oportunidades.</text>
+  <g transform="translate(110 455)">
+    <rect width="420" height="230" fill="#0d3558" stroke="#58a8e5" stroke-width="2"/><text x="34" y="82" fill="#8ec7ef" font-family="Arial, sans-serif" font-size="70" font-weight="700">3.4 km</text><text x="34" y="132" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="21" font-weight="700">CIUDAD CAMINABLE</text><text x="34" y="176" fill="#b9d5e8" font-family="Arial, sans-serif" font-size="18">Distancias cotidianas más cortas</text>
+    <rect x="470" width="420" height="230" fill="#0d3558" stroke="#58a8e5" stroke-width="2"/><text x="504" y="82" fill="#8ec7ef" font-family="Arial, sans-serif" font-size="70" font-weight="700">8 min</text><text x="504" y="132" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="21" font-weight="700">ACCESO CERCANO</text><text x="504" y="176" fill="#b9d5e8" font-family="Arial, sans-serif" font-size="18">Servicios al alcance de la vida diaria</text>
+    <rect x="940" width="330" height="230" fill="#f2b84b"/><text x="974" y="65" fill="#071b31" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">PRINCIPIOS</text><text x="974" y="112" fill="#071b31" font-family="Arial, sans-serif" font-size="22" font-weight="700">Caminar</text><text x="974" y="150" fill="#071b31" font-family="Arial, sans-serif" font-size="22" font-weight="700">Pedalear</text><text x="974" y="188" fill="#071b31" font-family="Arial, sans-serif" font-size="22" font-weight="700">Conectar</text>
+  </g>
+  <text x="110" y="790" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="24" font-weight="600">RapOt conecta recorridos cotidianos con una ciudad más cercana.</text>
+  <text x="110" y="875" fill="#7fb8df" font-family="Arial, sans-serif" font-size="17" letter-spacing="3">INDICADORES DE REFERENCIA · PROPUESTA INICIAL</text>
+</svg>

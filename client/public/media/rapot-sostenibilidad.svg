@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sostenibilidad y bienestar urbano en RapOt</title>
+  <desc id="desc">Infografía referencial de sostenibilidad del modelo RapOt: 28 hectáreas de territorio conectado y 17 activos urbanos, junto con principios de paisaje, memoria, cuidado y resiliencia.</desc>
+  <rect width="1600" height="1000" fill="#f1f5ef"/>
+  <rect x="0" y="0" width="1600" height="150" fill="#173f38"/>
+  <path d="M0 760C250 620 350 840 600 700S980 520 1600 600V1000H0Z" fill="#d6e6d4"/>
+  <path d="M0 820C300 690 420 900 700 760S1100 630 1600 700" fill="none" stroke="#4b8b5d" stroke-width="7" opacity=".65"/>
+  <g fill="none" stroke="#4b8b5d" stroke-width="4" opacity=".8"><path d="M175 780c-20-80-5-140 45-190M220 670c-42-30-75-35-112-20M230 630c35-40 70-52 108-47M500 820c20-80 60-125 126-163M580 720c-48-10-81 3-113 31M600 685c44-33 83-38 119-23M1030 820c8-84 40-142 100-185M1100 700c-48-23-82-18-119 5M1114 664c41-37 77-52 120-44"/></g>
+  <g fill="#4b8b5d"><circle cx="220" cy="590" r="8"/><circle cx="626" cy="650" r="8"/><circle cx="1115" cy="630" r="8"/></g>
+  <text x="110" y="96" fill="#d8ebd8" font-family="Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="7">RapOt / SOSTENIBILIDAD URBANA</text>
+  <text x="110" y="260" fill="#173f38" font-family="Arial, sans-serif" font-size="72" font-weight="700">Cuidar el territorio</text>
+  <text x="110" y="340" fill="#173f38" font-family="Arial, sans-serif" font-size="72" font-weight="700">es construir ciudad.</text>
+  <text x="110" y="405" fill="#436057" font-family="Arial, sans-serif" font-size="24">Paisaje, memoria y cuidado como infraestructura para el bienestar.</text>
+  <g transform="translate(110 500)">
+    <rect width="430" height="225" fill="#e1eedf" stroke="#4b8b5d" stroke-width="2"/><text x="34" y="82" fill="#2e7146" font-family="Arial, sans-serif" font-size="70" font-weight="700">28 ha</text><text x="34" y="132" fill="#173f38" font-family="Arial, sans-serif" font-size="21" font-weight="700">TERRITORIO CONECTADO</text><text x="34" y="178" fill="#436057" font-family="Arial, sans-serif" font-size="18">Un ámbito para integrar bienestar</text>
+    <rect x="475" width="430" height="225" fill="#e1eedf" stroke="#4b8b5d" stroke-width="2"/><text x="509" y="82" fill="#2e7146" font-family="Arial, sans-serif" font-size="70" font-weight="700">17</text><text x="509" y="132" fill="#173f38" font-family="Arial, sans-serif" font-size="21" font-weight="700">ACTIVOS URBANOS</text><text x="509" y="178" fill="#436057" font-family="Arial, sans-serif" font-size="18">Memorias, comunidades y espacios</text>
+    <rect x="950" width="320" height="225" fill="#f2b84b"/><text x="984" y="58" fill="#173f38" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">COMPONENTES</text><text x="984" y="105" fill="#173f38" font-family="Arial, sans-serif" font-size="22" font-weight="700">Paisaje</text><text x="984" y="142" fill="#173f38" font-family="Arial, sans-serif" font-size="22" font-weight="700">Memoria</text><text x="984" y="179" fill="#173f38" font-family="Arial, sans-serif" font-size="22" font-weight="700">Cuidado</text>
+  </g>
+  <text x="110" y="820" fill="#173f38" font-family="Arial, sans-serif" font-size="24" font-weight="600">RapOt convierte los sistemas naturales y sociales en soporte de la vida urbana.</text>
+  <text x="110" y="900" fill="#4b8b5d" font-family="Arial, sans-serif" font-size="17" letter-spacing="3">INDICADORES DE REFERENCIA · PROPUESTA INICIAL</text>
+</svg>
