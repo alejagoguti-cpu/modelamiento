@@ -81,7 +81,7 @@ export default function Home() {
     const deepPath = window.location.pathname
       .replace(basePath, "")
       .replace(/^\/+|\/+$/g, "");
-    if (["proyecto", "capas", "mapa", "actualidad"].includes(deepPath)) {
+    if (["proyecto", "capas", "mapa", "actualidad", "preguntas", "participa"].includes(deepPath)) {
       window.requestAnimationFrame(() => {
         document.getElementById(deepPath)?.scrollIntoView({ behavior: "auto", block: "start" });
       });

@@ -20,6 +20,10 @@ function AppRouter() {
         <Route path={"/mapa/"} component={Home} />
         <Route path={"/actualidad"} component={Home} />
         <Route path={"/actualidad/"} component={Home} />
+        <Route path={"/preguntas"} component={Home} />
+        <Route path={"/preguntas/"} component={Home} />
+        <Route path={"/participa"} component={Home} />
+        <Route path={"/participa/"} component={Home} />
         <Route path={"/404"} component={NotFound} />
         <Route path={"/404/"} component={NotFound} />
         {/* Final fallback route */}
