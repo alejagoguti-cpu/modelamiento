@@ -36,6 +36,14 @@ jobs:
       - name: Build site
         run: pnpm build
 
+      - name: Prepare deep-link entry points
+        run: |
+          for route in proyecto capas mapa actualidad 404; do
+            mkdir -p "dist/public/$route"
+            cp dist/public/index.html "dist/public/$route/index.html"
+          done
+          touch dist/public/.nojekyll
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
