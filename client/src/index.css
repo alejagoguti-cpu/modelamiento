@@ -133,3 +133,11 @@ body, .rapot-shell { background: #f8fbff !important; color: #102337 !important; 
 .section-frame.is-section-arriving { animation: rapot-section-arrive 680ms var(--ease-out) both; }
 @keyframes rapot-section-arrive { from { opacity: .72; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .section-frame.is-section-arriving { animation: none; } }
+
+/* FAQ y participación ciudadana. */
+.faq-item { transition: border-color 220ms var(--ease-out), background-color 220ms var(--ease-out); }
+.faq-item[open] { border-color: rgba(38,121,198,.55); background: rgba(38,121,198,.035); }
+.faq-item summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #58a8e5; outline-offset: 3px; }
+.faq-plus { display: inline-block; }
+#participa input, #participa select, #participa textarea { border-radius: 0; font-family: "Montserrat", sans-serif; }
+@media (max-width: 640px) { .faq-item summary { font-size: 1rem; line-height: 1.35; } #participa input, #participa select, #participa textarea { font-size: 16px; } }

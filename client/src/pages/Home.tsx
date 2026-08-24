@@ -8,6 +8,8 @@ import {
   Building2,
   ChevronRight,
   CircleDotDashed,
+  CheckCircle2,
+  Download,
   Factory,
   Leaf,
   Menu,
@@ -16,7 +18,7 @@ import {
   Trees,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 
 const mediaUrl = (filename: string) => `${import.meta.env.BASE_URL}media/${filename}`;
 const heroImage = mediaUrl("hero-industrial.svg");
@@ -24,6 +26,14 @@ const heritageImage = mediaUrl("heritage-industrial.svg");
 const corridorImage = mediaUrl("corridor-green.svg");
 const brandMark = mediaUrl("rapot-symbol.svg");
 const referenceMapUrl = "https://experience.arcgis.com/experience/1278bd076fc74e78be56f7ac592f75f8";
+const infographicUrl = `${import.meta.env.BASE_URL}media/rapot-indicadores.svg`;
+
+const faqItems = [
+  ["¿Qué es RapOt?", "RapOt es un nuevo modelo de ciudad que integra vivienda, trabajo, cuidado, paisaje, movilidad y cultura para hacer más cercana, conectada y habitable la vida cotidiana."],
+  ["¿Qué problema busca transformar?", "La distancia entre las personas y las oportunidades urbanas. RapOt propone conectar barrios, servicios, espacios públicos y actividades para reducir desigualdades y fortalecer la vida comunitaria."],
+  ["¿Cómo se aplica en el territorio?", "Se aplica reconociendo lo que ya existe y articulando acciones concretas: paisaje de bienestar, memoria productiva, movilidad conectada y espacios para la vida compartida."],
+  ["¿Cómo pueden participar los ciudadanos?", "Pueden compartir prioridades, recorridos, necesidades y propuestas. La opinión ciudadana ayuda a convertir el modelo en decisiones urbanas más útiles y legítimas."],
+];
 
 const indicators = [
   ["28 ha", "Territorio conectado", "Un ámbito urbano para integrar oportunidades y bienestar"],
@@ -51,6 +61,7 @@ export default function Home() {
   const [isLayerTransitioning, setIsLayerTransitioning] = useState(false);
   const [heroLayersOpen, setHeroLayersOpen] = useState(false);
   const [arrivingSection, setArrivingSection] = useState<string | null>(null);
+  const [feedbackSent, setFeedbackSent] = useState(false);
   const activeMapLayer = mapLayers.find(layer => layer.id === activeLayerId) ?? mapLayers[0];
 
   useEffect(() => {
@@ -90,6 +101,15 @@ export default function Home() {
     window.setTimeout(() => setArrivingSection(current => current === id ? null : current), 680);
   };
 
+  const handleFeedbackSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const response = Object.fromEntries(formData.entries());
+    window.localStorage.setItem("rapot-feedback-draft", JSON.stringify({ ...response, savedAt: new Date().toISOString() }));
+    setFeedbackSent(true);
+    event.currentTarget.reset();
+  };
+
   const selectMapLayer = (layerId: string) => {
     if (layerId === activeLayerId) return;
     setActiveLayerId(layerId);
@@ -110,6 +130,8 @@ export default function Home() {
             <button onClick={() => goTo("capas")} className="nav-link">Capas</button>
             <button onClick={() => goTo("mapa")} className="nav-link">Mapa</button>
             <button onClick={() => goTo("actualidad")} className="nav-link">Actualidad</button>
+            <button onClick={() => goTo("preguntas")} className="nav-link">FAQ</button>
+            <button onClick={() => goTo("participa")} className="nav-link">Participa</button>
           </nav>
           <button onClick={() => setMobileOpen(!mobileOpen)} className="menu-button grid h-10 w-10 place-items-center border border-white/25 md:hidden" aria-label="Abrir navegación">
             {mobileOpen ? <X size={19} /> : <Menu size={19} />}
@@ -117,7 +139,7 @@ export default function Home() {
         </div>
         {mobileOpen && (
           <nav className="mobile-nav border-t border-white/10 bg-[#1d2422] px-5 py-5 md:hidden" aria-label="Navegación móvil">
-            {[['Proyecto', 'proyecto'], ['Capas', 'capas'], ['Mapa', 'mapa'], ['Actualidad', 'actualidad']].map(([label, id], index) => (
+            {[['Proyecto', 'proyecto'], ['Capas', 'capas'], ['Mapa', 'mapa'], ['Actualidad', 'actualidad'], ['FAQ', 'preguntas'], ['Participa', 'participa']].map(([label, id], index) => (
               <button key={id} onClick={() => goTo(id)} className="mobile-nav-link block w-full border-b border-white/10 py-4 text-left font-mono text-xs uppercase tracking-[0.15em]" style={{ animationDelay: `${index * 55}ms` }}>
                 {label}
               </button>
@@ -198,7 +220,27 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="actualidad" className={`section-frame relative overflow-hidden bg-[#e9e4d8] py-20 sm:py-24 ${arrivingSection === "actualidad" ? "is-section-arriving" : ""}`}><div className="absolute inset-y-0 left-0 w-3 bg-[#f2b84b] sm:w-6" /><div className="absolute right-[9%] top-0 hidden h-full w-px bg-[#1f2623]/15 lg:block" /><div className="notice-node absolute right-[9%] top-16 hidden h-3 w-3 translate-x-[5px] rounded-full bg-[#f2b84b] lg:block" /><div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-8 flex items-center gap-3 border-b border-[#1f2623]/25 pb-3 font-mono text-[10px] font-bold uppercase tracking-[.16em]"><span className="pulse-dot inline-block h-2 w-2 rounded-full bg-[#f2b84b]" /> RapOt / construcción colectiva en curso</div><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24"><div><p className="eyebrow">05 / Construcción colectiva</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">El modelo se construye con la comunidad.</h2></div><div className="space-y-0 border-t border-[#1f2623]/35"><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">02.08.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Recorrido</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Recorrer el territorio para decidir mejor</h3></div><button aria-label="Ver recorrido" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">18.07.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Taller abierto</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Diseñar juntos una red urbana cercana</h3></div><button aria-label="Ver taller" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article></div></div></div></section>
+        <section id="actualidad" className={`section-frame relative overflow-hidden bg-[#e9e4d8] py-20 sm:py-24 ${arrivingSection === "actualidad" ? "is-section-arriving" : ""}`}><div className="absolute inset-y-0 left-0 w-3 bg-[#f2b84b] sm:w-6" /><div className="absolute right-[9%] top-0 hidden h-full w-px bg-[#1f2623]/15 lg:block" /><div className="notice-node absolute right-[9%] top-16 hidden h-3 w-3 translate-x-[5px] rounded-full bg-[#f2b84b] lg:block" /><div data-reveal className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-8 flex items-center gap-3 border-b border-[#1f2623]/25 pb-3 font-mono text-[10px] font-bold uppercase tracking-[.16em]"><span className="pulse-dot inline-block h-2 w-2 rounded-full bg-[#f2b84b]" /> RapOt / construcción colectiva en curso</div><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24"><div><p className="eyebrow">05 / Construcción colectiva</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">El modelo se construye con la comunidad.</h2></div><div className="space-y-0 border-t border-[#1f2623]/35"><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">02.08.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Recorrido</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Recorrer el territorio para decidir mejor</h3></div><button aria-label="Ver recorrido" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article><article className="notice-row group grid gap-4 border-b border-[#1f2623]/35 py-6 sm:grid-cols-[100px_1fr_auto] sm:items-center"><p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#9a721a]">18.07.26</p><div><p className="font-mono text-[10px] uppercase tracking-[.14em] text-[#644b15]">Taller abierto</p><h3 className="mt-1 text-xl font-bold tracking-[-.04em]">Diseñar juntos una red urbana cercana</h3></div><button aria-label="Ver taller" className="notice-button hidden h-9 w-9 place-items-center border border-[#1f2623]/50 sm:grid"><ChevronRight size={18} /></button></article></div></div></div>        </section>
+
+        <section id="preguntas" className={`section-frame bg-[#f8fbff] py-20 sm:py-28 ${arrivingSection === "preguntas" ? "is-section-arriving" : ""}`}>
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div data-reveal className="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
+              <div><p className="eyebrow">06 / Preguntas frecuentes</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">Entender RapOt es el primer paso para construirlo.</h2></div>
+              <div className="space-y-3">{faqItems.map(([question, answer]) => <details key={question} className="faq-item group border-y border-[#0a4d88]/20"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-bold text-[#102337] [&::-webkit-details-marker]:hidden"><span>{question}</span><span className="faq-plus text-2xl font-normal text-[#2679c6] transition-transform group-open:rotate-45">+</span></summary><p className="max-w-2xl pb-6 text-[15px] leading-7 text-[#4c6378]">{answer}</p></details>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="participa" className={`section-frame bg-[#0c3358] py-20 text-white sm:py-28 ${arrivingSection === "participa" ? "is-section-arriving" : ""}`}>
+          <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+            <div data-reveal className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+              <div><p className="eyebrow !text-[#8ec7ef]">07 / Participa</p><h2 className="mt-5 text-4xl font-extrabold leading-[.93] tracking-[-.06em] sm:text-6xl">El nuevo modelo de ciudad también se diseña contigo.</h2><p className="mt-7 max-w-md text-base leading-7 text-[#c3ddec]">Cuéntanos qué necesita tu barrio para ser más cercano, conectado y habitable. Tu respuesta se guarda en este dispositivo como borrador; para recibir respuestas de varios ciudadanos conectaremos después un servicio de formularios.</p><a href={infographicUrl} download="rapot-indicadores-urbanos.svg" className="mt-8 inline-flex items-center gap-3 border border-[#8ec7ef] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#f4fbff] transition-colors hover:bg-[#2679c6]"><Download size={16} /> Descargar indicadores</a></div>
+              <form onSubmit={handleFeedbackSubmit} className="rounded-none border border-[#8ec7ef]/35 bg-[#071b31]/45 p-6 sm:p-8" aria-label="Formulario de opinión sobre RapOt">
+                <div className="grid gap-6"><div><label htmlFor="citizen-name" className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-[.14em] text-[#8ec7ef]">Nombre o colectivo</label><input id="citizen-name" name="name" required className="w-full border border-[#8ec7ef]/40 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/45 focus:border-[#8ec7ef]" placeholder="Cómo quieres identificarte" /></div><div><label htmlFor="citizen-priority" className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-[.14em] text-[#8ec7ef]">¿Qué debería priorizar RapOt?</label><select id="citizen-priority" name="priority" required defaultValue="" className="w-full border border-[#8ec7ef]/40 bg-[#071b31] px-4 py-3 text-sm text-white outline-none focus:border-[#8ec7ef]"><option value="" disabled>Selecciona una prioridad</option><option>Más espacios verdes</option><option>Movilidad y seguridad vial</option><option>Vivienda y servicios cercanos</option><option>Activación de patrimonio y empleo</option><option>Participación comunitaria</option></select></div><div><label htmlFor="citizen-proposal" className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-[.14em] text-[#8ec7ef]">Tu propuesta</label><textarea id="citizen-proposal" name="proposal" required rows={5} className="w-full resize-y border border-[#8ec7ef]/40 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/45 focus:border-[#8ec7ef]" placeholder="Describe una idea, necesidad o recorrido del territorio" /></div><button type="submit" className="inline-flex w-fit items-center gap-3 bg-[#58a8e5] px-5 py-3.5 font-mono text-xs font-bold uppercase tracking-[.12em] text-[#071b31] transition-colors hover:bg-[#8ec7ef]"><CheckCircle2 size={16} /> Guardar opinión</button>{feedbackSent && <p role="status" className="font-mono text-xs leading-5 text-[#bfe1fa]">Tu opinión quedó guardada como borrador en este dispositivo.</p>}</div>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="site-footer bg-[#1d2422] py-10 text-white"><div className="mx-auto flex max-w-[1440px] flex-col gap-7 px-5 sm:px-8 md:flex-row md:items-end md:justify-between lg:px-12"><div className="flex items-center gap-3"><img src={brandMark} alt="" className="brand-mark h-12 w-12 object-contain" /><div><p className="font-mono text-lg font-bold tracking-[.22em]">RapOt</p><p className="mt-1 font-mono text-[9px] uppercase tracking-[.14em] text-white/70">Nuevo modelo de ciudad / propuesta inicial</p></div></div><p className="max-w-sm font-mono text-[9px] uppercase leading-5 tracking-[.12em] text-white/70">RapOt es una propuesta para transformar los vínculos entre territorio, comunidad y ciudad.</p></div></footer>
